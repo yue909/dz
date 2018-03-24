@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name='TTUNION_verify' content='511b8d3eafb378fa6b22fd2830e325c5'>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/iview/2.7.4/styles/iview.css">
+    <script src="https://cdn.bootcss.com/vue/2.5.9/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/iview/2.7.4/iview.min.js"></script>
+    <script src="https://captcha.luosimao.com/static/dist/api.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <title>登录</title>
+    <style type="text/css">
+        #app{
+            height: 100vh;
+            padding-top: 77%;
+            background: url("https://new-weizhuan.oss-cn-shenzhen.aliyuncs.com/common/img/homes/Downloadbg.png") no-repeat left center;
+            background-size: cover;
+        }
+        .login-btn{
+            background-color: #4488FF;
+            border: none;
+            color: #ffffff;
+            font-size: 16px;
+            height: 40px;
+        }
+        .phonenum-input-wrap{
+            margin-top: 30px;
+        }
+        .input-wrap{
+            padding-left: 5px;
+            border-radius: 4px;
+            height: 44px;
+            line-height: 20px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            background: rgb(255, 255, 255);
+            border: 1px solid #dad9d9;
+        }
+        .input-wrap input{
+            background: rgba(0,0,0,0);
+            border: none;
+            outline: none;
+            color: #808080;
+            font-size: 16px;
+            padding: 4px 7px;
+            box-sizing: border-box;
+            height: 44px;
+        }
+        .ivu-input{
+            outline: none;
+            background-color: rgba(0,0,0,0.5);
+            border: none;
+            border-radius: 0;
+            height: 44px;
+            color: #fff;
+            font-size: 16px;
+        }
+        .yanzhengma-input-wrap{
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .yanzhengma-input-wrap input{
+            width: 40%;
+            flex: 1;
+        }
+        .yanzhengma-input-wrap button{
+            padding: 0 5px;
+            border: none;
+            background: #4488FF;
+            color: #fff;
+            box-sizing: border-box;
+            height: 62%;
+            font-size: 12px;
+            min-width: 82px;
+            margin-right: 5px;
+            border-radius: 3px;
+        }
+        .l-captcha{
+            width: 100% !important;
+            margin: 20px 0;
+            padding: 0;
+        }
+        #captcha_widget{
+            width: 100% !important;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <i-row>
+        <i-col span="18" offset="3">
+             <div class="phonenu-input-wrap input-wrap">
+                <input v-model="phone" placeholder="请输入手机号码" number="true" type="number" maxlength="11">
+             </div>
+             <!-- <center> -->
+                <div id="rjyz" class="l-captcha" data-site-key="1cbdf0bd77a0f29309e23009180674d3" data-callback="getResponse"></div>
+             <!-- </center> -->
+        </i-col>
+    </i-row>
+    <i-row>
+        <i-col span="18" offset="3">
+             <div class="yanzhengma-input-wrap input-wrap">
+                <input class="item" v-model="code" placeholder="请输入验证码" number="true" type="number" maxlength="6">
+                <button class="item" @click="next" long>{{ buttonTxt }}</button>
+             </div>
+             <i-button class="login-btn" @click="verify" long>登 录</i-button>
+
+        </i-col>
+    </i-row>
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            phone: "",
+            code: "",
+            captcha: "",
+            buttonTxt:'获取验证码',
+            nomanyClickFlag:false
+        },
+        methods: {
+            next: function () {
+                var self = this;
+                // var reg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/
+                var reg = /^(1+\d{10})$/
+                var phonetag = reg.test(self.phone)
+                if (phonetag == false) {
+                    self.$Message.info('请输入正确的11位手机号码！');
+                    return false;
+                }
+                if (self.captcha=="") {
+                    self.$Message.info('请先进行人机验证！');
+                    return false;
+                }
+                if (self.nomanyClickFlag == true) {
+                    return
+                }
+                $.post("__MODULE__/Auth/sms?type=send", {luotest_response: self.captcha, phone: self.phone}, function(data){
+                    LUOCAPTCHA.reset();
+                    if (data.code == 0) {
+                        self.nomanyClickFlag = true;
+                        self.nomanyClick();
+                        self.$Message.success(data.msg);
+                    } else {
+                        self.$Message.error(data.msg);
+                    }
+                });
+            },
+            nomanyClick:function(){
+                var self = this
+                var num = 60;
+                var time = setInterval(function(){
+                    num--;
+                    self.buttonTxt = num+'秒后重试';
+                    if (num == 0) {
+                        self.buttonTxt = '获取验证码';
+                        self.nomanyClickFlag = false
+                        clearInterval(time)
+                    }
+                },1000)
+            },
+            verify: function () {
+                var self = this;
+                var reg = /^\d{6}$/
+                var tag = reg.test(self.code)
+                // var reg2 = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/
+                var reg2 = /^(1+\d{10})$/
+                var phonetag = reg2.test(self.phone)
+                if (phonetag == false) {
+                    self.$Message.info('请输入正确的11位手机号码！');
+                    return
+                }
+                if (self.captcha=="") {
+                    self.$Message.info('请先进行人机验证！');
+                    return false;
+                }
+                if (tag == false) {
+                    self.$Message.info('请输入正确的6位验证码！');
+                    return false;
+                }
+                $.post("__MODULE__/Auth/sms?type=verify", {code: self.code, phone: self.phone}, function(data){
+                    if (data.code == 0) {
+                        // self.type = "success";
+                        self.$Message.success(data.msg);
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 1000);
+                    } else {
+                        LUOCAPTCHA.reset();
+                        self.$Message.error(data.msg);
+                    }
+                });
+            }
+        }
+    });
+
+    function getResponse(data) {
+        app.captcha = data;
+    }
+  </script>
+</body>
+</html>

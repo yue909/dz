@@ -1,0 +1,60 @@
+<extend name="Publice:index" />
+<block name="header">
+   <div class="mws-panel grid_8">
+       <h2>用户广告详情展示</h2>
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i>ID:{$guanggao['id']}</span>
+        </div>
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i>关联广告ID:{$guanggao['gid']}</span>
+        </div>
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i>标题:{$guanggao['title']}</span>
+        </div>
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i>广告地址:{$guanggao['url']}</span>
+        </div>
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i>推广模式:<if condition="$guanggao['pattern'] == 1">CPC<else/>CPV</if></span>
+        </div>
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i>单价:{$guanggao['price']}</span>
+        </div>
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i>素材:{$guanggao['matter']}</span>
+        </div>
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i>预算价格:{$guanggao['bprice']}</span>
+        </div>
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i>状态:<if condition="$guanggao['status'] == 1">已审核<else/><if condition = "$guanggao['status'] == 2">已驳回<else/>未审核</if></if></span>
+        </div>
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i>创建时间:{$guanggao['create_time']|date="Y-m-d H:i:s",###}</span>
+        </div>
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i>广告人ID:{$guanggao['uid']}</span>
+        </div>
+        <div class="mws-panel-header" style="height: auto;">
+            <span><i class="icon-table"></i>推广素材图片:
+            </span>
+            <div style="padding-top: 20px;">
+                <foreach name = "guanggao['tgimg']" item = 'tg'>
+                        <img src="{$tg}" style="margin-left: 20px;width: 150px;display: inline-block;">
+                </foreach>
+            </div>
+        </div>
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i>授权资质证明:
+            </span>
+            <div style="padding-top: 20px;">
+                <foreach name = "guanggao['sqimg']" item = 'sq'>
+                        <img src="{$sqs}" style="margin-left: 20px;width: 150px;display: inline-block;">
+                </foreach>
+            </div>
+        </div>
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i>描述:{$guanggao['describe']}</span>
+        </div>
+    </div>
+</block>

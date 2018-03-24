@@ -1,0 +1,183 @@
+<extend name="Publice:index" />
+<block name="header">
+   <div class="mws-panel grid_8">
+       <h2>数据展示</h2>
+        <div>
+        </div>
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i> 数据列表</span>
+
+        </div>
+        <div class="mws-panel-body no-padding">
+            <table class="mws-table">
+                <thead>
+                    <tr>
+                        <th>总金额</th>
+                        <th>总收徒数</th>
+                        <th>总文章数量</th>
+                        <th>总阅读量</th>
+                        <th>总分享量</th>
+                        <th>总广告数量</th>
+                        <th>总广告展示量</th>
+                        <th>总点击量</th>
+                        <th>总广告点击率</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style=" text-align: center;">{$money}</td>
+                        <td style=" text-align: center;">{$Enlightening[0]['Enlightening']}</td>
+                        <td style=" text-align: center;">{$article[0]['article']}</td>
+                        <td style=" text-align: center;">{$article[0]['read_num']}</td>
+                        <td style=" text-align: center;">{$article[0]['share_num']}</td>
+                        <td style=" text-align: center;">{$guanggaonum[0]['guanggaonum']}</td>
+                        <td style=" text-align: center;">{$guanggaoread[0]['show_num']}</td>
+                        <td style=" text-align: center;">{$guanggaoread[0]['click_num']}</td>
+                        <td style=" text-align: center;">{$successRate}</td>
+                    </tr>
+                </tbody>
+                <tr>
+                    <td colspan="9" align="center">{$fen}</td>
+               </tr>
+            </table>
+        </div><br>
+
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i> 资金数据</span>
+        </div>
+        <div class="mws-panel-body no-padding">
+            <table class="mws-table">
+                <thead>
+                    <tr>
+                        <th>总金额</th>
+                        <th>可用金额</th>
+                        <th>冻结金额</th>
+                        <th style="color: #F44336;">待处理提现</th>
+                        <th>成功提现</th>
+                        <th>驳回提现</th>
+                        <th>今日总提现</th>
+                        <th>历史总提现</th>
+                        <th>历史累计金额</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style=" text-align: center;">{$moneyInfo['total']}</td>
+                        <td style=" text-align: center;">{$moneyInfo['normal']}</td>
+                        <td style=" text-align: center;">{$moneyInfo['freeze']}</td>
+                        <td style=" text-align: center;color: #F44336;">{$moneyInfo['waiting_money']}元 / {$moneyInfo['waiting_num']}笔</td>
+                        <td style=" text-align: center;">{$moneyInfo['success_money']}元 / {$moneyInfo['success_num']}笔</td>
+                        <td style=" text-align: center;">{$moneyInfo['rejected_money']}元 / {$moneyInfo['rejected_num']}笔</td>
+                        <td style=" text-align: center;">{$moneyInfo['today_money']}元 / {$moneyInfo['today_num']}笔</td>
+                        <td style=" text-align: center;">{$moneyInfo['history_money']}元 / {$moneyInfo['history_num']}笔</td>
+                        <td style=" text-align: center;">{$moneyInfo['history']}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div><br>
+
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i> 用户数据</span>
+        </div>
+        <div class="mws-panel-body no-padding">
+            <table class="mws-table">
+                <thead>
+                    <tr>
+                        <th>用户总数</th>
+                        <th>关注</th>
+                        <th>取消关注</th>
+                        <th>今日新增</th>
+                        <th>最近7天</th>
+                        <th>有效用户</th>
+                        <th>无效用户</th>
+                        <th>手机/H5登录</th>
+                        <th>公众号登录</th>
+                        <th>小程序登录</th>
+                        <th>黑名单</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style=" text-align: center;">{$user['all']}</td>
+                        <td style=" text-align: center;">{$user['follow']}</td>
+                        <td style=" text-align: center;">{$user['unfollow']}</td>
+                        <td style=" text-align: center;">{$user['today']}</td>
+                        <td style=" text-align: center;">{$user['week']}</td>
+                        <td style=" text-align: center;">{$user['valid']}</td>
+                        <td style=" text-align: center;">{$user['invalid']}</td>
+                        <td style=" text-align: center;">{$user['phone']}</td>
+                        <td style=" text-align: center;">{$user['wechat']}</td>
+                        <td style=" text-align: center;">{$user['miniapp']}</td>
+                        <td style=" text-align: center;">{$user['black']}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div><br>
+
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i> 文章数据</span>
+        </div>
+        <div class="mws-panel-body no-padding">
+            <table class="mws-table">
+                <thead>
+                    <tr>
+                        <th>文章总数</th>
+                        <th>显示</th>
+                        <th>隐藏</th>
+                        <th>分类</th>
+                        <th>总阅读/分享</th>
+                        <th>有效阅读/分享</th>
+                        <th>今日阅读/分享</th>
+                        <th>最近7天阅读/分享</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style=" text-align: center;">{$articleInfo['total']}</td>
+                        <td style=" text-align: center;">{$articleInfo['show']}</td>
+                        <td style=" text-align: center;">{$articleInfo['hide']}</td>
+                        <td style=" text-align: center;">{$articleInfo['category']}</td>
+                        <td style=" text-align: center;">{$articleInfo['total_read']}次/{$articleInfo['total_share']}次</td>
+                        <td style=" text-align: center;">{$articleInfo['valid_read']}次/{$articleInfo['valid_share']}次</td>
+                        <td style=" text-align: center;">{$articleInfo['today_read']}次/{$articleInfo['today_share']}次</td>
+                        <td style=" text-align: center;">{$articleInfo['week_read']}次/{$articleInfo['week_share']}次</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div><br>
+
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i> 广告数据</span>
+        </div>
+        <div class="mws-panel-body no-padding">
+            <table class="mws-table">
+                <thead>
+                    <tr>
+                        <th>广告总数</th>
+                        <th>上线</th>
+                        <th>下线</th>
+                        <th>模板</th>
+                        <th>总预算/消费</th>
+                        <th>总展示/点击/点击率</th>
+                        <th>今日展示/点击/点击率</th>
+                        <th>最近7天展示/点击/点击率</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style=" text-align: center;">{$adInfo['total']}</td>
+                        <td style=" text-align: center;">{$adInfo['show']}</td>
+                        <td style=" text-align: center;">{$adInfo['hide']}</td>
+                        <td style=" text-align: center;">{$adInfo['template']}</td>
+                        <td style=" text-align: center;">{$adInfo['total_budget']}元/{$adInfo['total_expense']}元</td>
+                        <td style=" text-align: center;">{$adInfo['valid_show']}次/{$adInfo['valid_click']}次/{$adInfo['valid_rate']}</td>
+                        <td style=" text-align: center;">{$adInfo['today_show']}次/{$adInfo['today_click']}次/{$adInfo['today_rate']}</td>
+                        <td style=" text-align: center;">{$adInfo['week_show']}次/{$adInfo['week_click']}次/{$adInfo['week_rate']}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</block>

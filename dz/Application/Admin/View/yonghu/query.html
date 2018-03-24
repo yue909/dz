@@ -1,0 +1,194 @@
+<extend name="Publice:index" />
+<block name="header">
+	 <div class="mws-panel grid_8">
+        <h2>前台用户列表展示</h2>
+        <div style="margin-bottom: 16px;">
+            <form name="fsoso" method="post" action="__URL__/querysearch" style="width:550px">
+                <input type="text" name="userid" class="dfinput" value="{$aci}" style="width:200px" />
+                <input  type="submit" class="btn" value="查询" >
+
+            </form>
+        </div>
+        <if condition="$user && $user['status'] == 2">
+            <div class="mws-panel-header">
+
+                <!-- <span><i class="icon-table"></i>用户数据<a href="__URL__/block/uid/{$user['id']}" class="btn btn-danger">恢复</a></span> -->
+
+                <span><i class="icon-table"></i>用户数据<a style="margin-left: 10px;" href="__URL__/block/uid/{$user['id']}" class="btn btn-danger">恢复</a></span>
+
+
+            </div>
+        <else/>
+        <if condition="$user && $user['status'] !== 2">
+            <div class="mws-panel-header">
+
+                <!-- <span><i class="icon-table"></i>用户数据<a href="__URL__/block/id/{$user['id']}" class="btn btn-danger">拉黑</a></span> -->
+
+                <span><i class="icon-table"></i>用户数据<a style="margin-left: 10px;" href="__URL__/block/id/{$user['id']}" class="btn btn-danger">拉黑</a></span>
+
+            </div>
+        <else/>
+            <div class="mws-panel-header">
+                <span><i class="icon-table"></i>用户数据</span>
+            </div>
+        </if>
+        </if>
+        <div class="mws-panel-body no-padding">
+            <table class="mws-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>昵称</th>
+                        <th>头像</th>
+                        <th>手机号</th>
+                        <th>余额</th>
+                        <th>冻结金额</th>
+                        <th>累计收入</th>
+                        <th>加入时间</th>
+                        <th>账号状态</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style=" text-align: center;">{$user['id']}</td>
+                        <td style=" text-align: center;">{$user['username']}</td>
+                        <td style=" text-align: center;"><img width="80px" src="{$user['avatar']}"></td>
+                        <td style=" text-align: center;">{$user['phone']}</td>
+                        <td style=" text-align: center;">{$user['money']}</td>
+                        <td style=" text-align: center;">{$user['money_freeze']}</td>
+                        <td style=" text-align: center;">{$user['money_total']}</td>
+                        <td style=" text-align: center;">{$user['create_time' | date="Y-m-d H:i:s",###]}</td>
+                        <if condition = "$user['status'] == 0">
+                            <td style=" text-align: center;">正常</td>
+                        </if>
+                        <if condition = "$user['status'] == 1">
+                            <td style=" text-align: center;">禁用</td>
+                        </if>
+                        <if condition = "$user['status'] == 2">
+                            <td style=" text-align: center;">黑名单</td>
+                        </if>
+                    </tr>
+                </tbody>
+                <tr><td colspan="8" align="center">{$fen}</td></tr>
+            </table>
+        </div>
+        <if condition="$user['id']">
+            <div class="mws-panel-header">
+                <span><i class="icon-table"></i>最近阅读<a href="__URL__/userrecord/read/{$user['id']}" class="btn btn-danger">查询全部记录</a></span>
+            </div>
+        <else/>
+            <div class="mws-panel-header">
+                <span><i class="icon-table"></i>最近阅读</span>
+            </div>
+        </if>
+        <div class="mws-panel-body no-padding">
+            <table class="mws-table">
+                <thead>
+                    <tr>
+                        <th>文章ID</th>
+                        <th>文章名</th>
+                        <th>收益</th>
+                        <th>访客IP</th>
+                        <th>访客user_agent</th>
+                        <th>访客唯一标识符</th>
+                        <th>时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <foreach name='article' item='row'>
+                    <tr>
+                        <td style=" text-align: center;">{$row['article_id']}</td>
+                        <td style=" text-align: center;">{$row['title']}</td>
+                        <td style=" text-align: center;">{$row['money']}</td>
+                        <td style=" text-align: center;">{$row['ip']}</td>
+                        <td style=" text-align: center;" title="{$row['user_agent']}">查看</td>
+                        <td style=" text-align: center;">{$row['uuid']}</td>
+                        <td style=" text-align: center;">{$row['create_time' | date="Y-m-d H:i:s",###]}</td>
+                    </tr>
+                   </foreach>
+                </tbody>
+                <tr><td colspan="8" align="center">{$fen}</td></tr>
+            </table>
+    </div>
+        <if condition="$user['id']">
+            <div class="mws-panel-header">
+                <span><i class="icon-table"></i>最近收入<a href="__URL__/userrecord/income/{$user['id']}" class="btn btn-danger">查询全部记录</a></span>
+            </div>
+        <else/>
+            <div class="mws-panel-header">
+                <span><i class="icon-table"></i>最近收入</span>
+            </div>
+        </if>
+        <div class="mws-panel-body no-padding">
+            <table class="mws-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>收入金额</th>
+                        <th>收入来源备注</th>
+                        <th>收入之前余额</th>
+                        <th>收入之后余额</th>
+                        <th>收入时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <foreach name='money' item='row'>
+                    <tr>
+                        <td style=" text-align: center;">{$row['id']}</td>
+                        <td style=" text-align: center;">{$row['money']}</td>
+                        <td style=" text-align: center;">{$row['description']}</td>
+                        <td style=" text-align: center;">{$row['before_money']}</td>
+                        <td style=" text-align: center;">{$row['after_money']}</td>
+                        <td style=" text-align: center;">{$row['create_time' | date="Y-m-d H:i:s",###]}</td>
+                    </tr>
+                   </foreach>
+                </tbody>
+                <tr><td colspan="8" align="center">{$fen}</td></tr>
+            </table>
+        </div>
+                <if condition="$user['id']">
+            <div class="mws-panel-header">
+                <span><i class="icon-table"></i>最近提现<a href="__URL__/userrecord/withdraw/{$user['id']}" class="btn btn-danger">查询全部记录</a></span>
+            </div>
+        <else/>
+            <div class="mws-panel-header">
+                <span><i class="icon-table"></i>最近提现</span>
+            </div>
+        </if>
+                  <div class="mws-panel-body no-padding">
+            <table class="mws-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>提现金额</th>
+                        <th>创建时间</th>
+                        <th>成功时间</th>
+                        <th>提现状态</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <foreach name='withdraw' item='row'>
+                    <tr>
+                        <td style=" text-align: center;">{$row['id']}</td>
+                        <td style=" text-align: center;">{$row['money']}</td>
+                        <td style=" text-align: center;">{$row['create_time' | date="Y-m-d H:i:s",###]}</td>
+                        <td style=" text-align: center;">{$row['pay_time']}</td>
+                        <if condition = "$row['status'] == 0">
+                            <td style=" text-align: center;">未处理</td>
+
+                        </if>
+                        <if condition = "$row['status'] == 1">
+                            <td style=" text-align: center;">已提现</td>
+
+                        </if>
+                        <if condition = "$row['status'] == 2">
+                            <td style=" text-align: center;">驳回提现</td>
+
+                        </if>
+                    </tr>
+                   </foreach>
+                </tbody>
+                <tr><td colspan="8" align="center">{$fen}</td></tr>
+            </table>
+        </div>
+</block>

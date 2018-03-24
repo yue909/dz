@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>文章预览</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/App/article.css">
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/clipboard.js/1.7.1/clipboard.min.js"></script>
+    <style type="text/css">
+        .url_text{
+            height: 180px;
+            border-radius: 4px;
+            line-height: 15px;
+            display: flex;
+            align-items: center;
+            background: #f3f3f3;
+            border: none;
+            outline: none;
+            color: #484848;
+            font-size: 13px;
+            padding: 4px 4px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+        .copy-show{
+            display: none;
+        }
+    </style>
+</head>
+<body id="activity-detail" class="zh_CN mm_appmsg" style="background-color:#333;">
+
+<div style="position: fixed;width: 100%;text-align: center;z-index: 9999;bottom: 10%;"><span style="background: #5691c8;color: #fff;width: 50%;border-radius: 20px;padding: 10px 25% 10px 25%;" onclick="showCopy()">分 享 文 章</span></div>
+
+<div id="wrapper" style="position:absolute;top:0;bottom:0;left:0;right:0;">
+    <div id="scroll" style="position:absolute;background-color:#f3f3f3;z-index:100;width:100%;">
+        <div id="js_article" class="rich_media">
+            <div class="rich_media_inner">
+                <div id="page-content">
+                    <div id="img-content" class="rich_media_area_primary" style="padding-top:5px;">
+                        <h2 class="rich_media_title" id="activity-name">{$article['title']}</h2>
+                        <div class="rich_media_meta_list" style="margin-bottom:0;">
+                            <em id="post-date" class="rich_media_meta rich_media_meta_text">{$article['create_time']}</em>
+                        </div>
+                        {$article['content']}
+                        <div style="font-size: 10px;color: #717171;padding-top: 18px;position: initial;padding-bottom: 18px;">
+                            <center>版权声明：本文源于网络，版权归原作者所有，如侵权请<span style="color: #55b2fd;" onclick="contactUs()">联系我们</span>删除</center>
+                        </div>
+                        <br><br>
+                        <div class="rich_media_tool" id="js_toobar" style="padding-top:10px;">
+                            <div id="js_read_area" class="media_tool_meta tips_global meta_primary" >阅读 <span id="readNum">{$article['read_num']}</span></div>
+                            <div  class="media_tool_meta meta_primary tips_global meta_praise" id="like">
+                                <!-- <i class="icon_praise_gray"></i> -->分享
+                                <span class="praise_num" id="likeNum">{$article['share_num']}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="ui-dialog show copy-show" style="display: none;"><div class="ui-dialog-cnt" id="qq-alert"><div style="position: absolute;top: 2%;width: 25px;height: 25px;background: url(https://new-weizhuan.oss-cn-shenzhen.aliyuncs.com/common/close.png);background-size: contain;right: 1%;z-index: 99;" onclick="$('.copy-show').hide();"></div><header class="ui-dialog-hd ui-border-b">分享到QQ/微信/微博</header><div class="ui-dialog-bd"><textarea class="url_text" id="url_text">{$article['title']}{$article['share_url']}</textarea></div><div class="ui-dialog-ft"><button class="qq-button copy-button" data-clipboard-target="#url_text" data-clipboard-action="copy" type="button" data-role="button">复制到剪贴板</button></div></div></div>
+
+<link rel="stylesheet" type="text/css" href="https://new-weizhuan.oss-cn-shenzhen.aliyuncs.com/common/css/qqalert.css">
+<script>
+    var clipboard = new Clipboard('.copy-button');
+    clipboard.on('success', function(e){
+        $('.copy-show').hide();
+        poptipsQQUI(' 复制成功', '');
+    });
+    clipboard.on('error', function(e){
+        poptipsQQUI(' 复制失败，请长按复制');
+    });
+    function showCopy() {
+        $('.copy-show').show();
+    }
+    function contactUs() {
+        alertQQUI("客服QQ号码：2195635021", "联系我们", "", "");
+    }
+    function alertQQUI(i,e,t,d){var l=document.getElementById("ui-dialog");return e=e||"温馨提示",i=i||"",d=d||"确定",null==l&&document.body.insertAdjacentHTML("beforeEnd",'<div id="ui-dialog"><div class="ui-dialog show"><div class="ui-dialog-cnt" id="qq-alert"><div style="position: absolute;top: 2%;width: 25px;height: 25px;background: url(https://new-weizhuan.oss-cn-shenzhen.aliyuncs.com/common/close.png);background-size: contain;right: 1%;z-index: 99;" onclick="$(\'#ui-dialog\').hide();"></div><header class="ui-dialog-hd ui-border-b"></header><div class="ui-dialog-bd"></div><div class="ui-dialog-ft"><button class="qq-button" data-clipboard-target="#url_text" data-clipboard-action="copy" type="button" data-role="button"></button></div></div></div><div>'),l=document.getElementById("ui-dialog"),l.querySelectorAll(".ui-dialog-hd")[0].innerHTML=e,l.querySelectorAll(".ui-dialog-bd")[0].innerHTML=i,l.querySelectorAll(".qq-button")[0].innerHTML=d,l.querySelectorAll(".qq-button")[0].onclick=function(){l.style.display="none","function"==typeof t&&t()},l.style.display="block",!1}
+    function poptipsQQUI(a,b,c){var d=document.getElementById("ui-poptips");return a=a?a:"",b=b?b:2e3,null==d&&document.body.insertAdjacentHTML("beforeEnd",'<div id="ui-poptips"><div class="ui-poptips ui-poptips-success" style="top:8%;"><div class="ui-poptips-cnt"><i></i></div></div></div>'),d=document.getElementById("ui-poptips"),d.querySelectorAll(".ui-poptips-cnt")[0].innerHTML="<i></i>"+a,d.style.display="block",setTimeout(function(){d.style.display="none","function"==typeof c&&c()},b),!1}
+</script>
+</body>
+<script type="text/javascript">
+
+</script>
+</html>
+

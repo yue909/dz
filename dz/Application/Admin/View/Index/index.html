@@ -1,0 +1,13 @@
+<extend name="Publice:index" />
+<block name="header">
+  <div class="page_title">
+   <h2 class="fl">平台公告</h2>
+  </div>
+  <table class="table">
+   <foreach name="announce" item="vo">
+     <tr>
+      <td><a href="__MODULE__/Index/announce?id={$vo.id}">{$vo.title}</a> <span style="right: 10px;position: absolute;">{$vo.update_time|date="Y-m-d H:i:s",###}</span></td>
+     </tr>
+   </foreach>
+  </table>
+</block>

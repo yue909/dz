@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>爱阅赚</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admins/css/reset.css" />
+	<style type="text/css">
+		body{
+			background: #ccc;
+		}
+		.header-wrap{
+			background: #fff;
+		}
+		#ade-header{
+			height: 90px;
+			/*background: red;*/
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			width: 1200px;
+			margin: 0 auto;
+			/*background: #fff;*/
+		}
+		#ade-header .left{
+			display: flex;
+			align-items: center;
+		}
+		#ade-header .right{
+			display: flex;
+			align-items: center;
+		}
+		#ade-header .right .guanggaozhu{
+			background-color: yellow;
+			text-align: center;
+		}
+		.logopic{
+			display: inline-block;
+			width: 50px;
+			height: 50px;
+			background: black;
+		}
+		.avtor{
+			display: inline-block;
+			background: green;
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+		}
+		.avtor img{
+			width: 100%;
+		}
+		.advertising{
+			/*background: green;*/
+			border: 1px solid #ccc;
+			height: 120px;
+			display: flex;
+			justify-content: space-around;
+		}
+		.advertising > div{
+			flex: 1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.advertising .middle{
+			/*display: flex;*/
+			/*align-items: center;*/
+		}
+		.advertising .right a:nth-of-type(1){
+			background: red;
+			width: 92px;
+			height: 42px;
+			text-align: center;
+			line-height: 42px;
+			color: #fff;
+			margin-right: 20px;
+		}
+		.advertising .right a:nth-of-type(2){
+			background: green;
+			width: 92px;
+			height: 42px;
+			text-align: center;
+			line-height: 42px;
+			color: #fff;
+			margin-right: 20px;
+		}
+		.advertising .right a:nth-of-type(3){
+			width: 92px;
+			height: 42px;
+			text-align: center;
+			color: black;
+			display: inline-flex;
+			align-items: flex-end;
+		}
+		.advertising .middle >div{
+			flex: 1;
+		}
+		.ade-menuBox{
+			/*background: yellow;*/
+			display: flex;
+		}
+		.wraper{
+			width: 1200px;
+			margin: 0 auto;
+			background: #fff;
+		}
+		.ade-menuBox .left-menu{
+			width: 178px;
+			/*background: blue;*/
+			text-align: center;
+			box-sizing: border-box;
+		}
+		.ade-menuBox .left-menu a{
+			display: block;
+			border: 1px solid red;
+			height: 30px;
+			line-height: 30px;
+		}
+		.right-con{
+			/*background: red;*/
+			width: 1022px;
+			min-height: 600px;
+			box-sizing: border-box;
+		}
+		table{
+			font-family: verdana,arial,sans-serif;
+			font-size:11px;
+			color:#333333;
+			width: 100%;
+		}
+		table tr{
+			width: 100%;
+		}
+		table th{
+			padding: 8px;
+			font-size: 14px;
+			background: #eee;
+		}
+		table td{
+			text-align: center;
+			padding: 8px;
+		}
+		.order-header{
+			display: flex;
+			margin-bottom: 30px;
+			height: 50px;
+			align-items: center;
+		}
+		.order-header input {
+			border: 1px solid #ccc;
+			min-width: 300px;
+		}
+		.more-shaixuan{
+			cursor: pointer;
+		}
+		.order-header .drop-icon{
+			display: inline-block;
+			width: 20px;
+			height: 20px;
+			background: red;
+		}
+		.order-header > div{
+			flex: 1;
+			display: flex;
+			justify-content: center;
+		}
+		.drop-con{
+			display: none;
+		}
+		ul.record{
+			background-color: #eee;
+		}
+		ul.record li{
+			display: flex;
+			justify-content: space-around;
+			border-bottom: 1px solid #fff;
+			height: 30px;
+			align-items: center;
+		}
+	</style>
+</head>
+<body>
+	<!--头部-->
+	<div class="header-wrap">
+		<div id="ade-header">
+			<div class="left"><span class="logopic"></span><span>爱阅赚</span></div>
+			<div class="right">
+				<span class="avtor">
+					
+				</span>
+				<div>
+					<div>微信名字</div>
+					<div class="guanggaozhu">广告主</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="wraper">
+		<!--第一个版块，广告主基本信息-->
+		<div class="advertising">
+			<div class="left">
+				<div>
+					<div>
+						<span>中直</span>
+						<span style="display: inline-block;background: green;width: 20px;height: 15px;"></span>
+						<a href="#">如何升级？企业认证</a>
+					</div>
+					<div>
+						<span>{$_SESSION['phone']}</span>
+						<span style="display: inline-block;background-color: red;width: 20px;height: 15px;margin-left: 50px;"></span>
+						<a href="#">BUG</a>
+					</div>
+				</div>
+			</div>
+			<div class="middle">
+				<div class="mid-lf">
+					<div>钱包余额</div>
+					<div>0.00元</div>
+				</div>
+				<div class="mid-md">
+					<div>待确认订单</div>
+					<div>0个</div>
+				</div>
+				<div class="mid-rt">
+					<div>待支付订单</div>
+					<div>0个</div>
+				</div>
+			</div>
+			<div class="right">
+				<a href="#">投软文</a>
+				<a href="#">投贴片</a>
+				<a href="#">如何投放？</a>
+			</div>
+		</div>
+		<div class="ade-menuBox">
+		    <!--第二个版块，左边菜单-->
+		    <div class="left-menu">
+		        <a href="__MODULE__/Index/extension.html"><div class="left-menu-btn left-menu-btn-on">推广管理</div></a>
+		        <a href="__MODULE__/Login/orderManagement.html"><div class="left-menu-btn">订单管理</div></a>
+		        <a href="__MODULE__/Login/InvoiceManagement.html"><div class="left-menu-btn">充值</div></a>
+		        <!-- <a href="wallet.html"><div class="left-menu-btn">新榜钱包</div></a> -->
+		        <!-- <a href="blacklist.html"><div class="left-menu-btn">黑名单</div></a> -->
+		    </div>
+		    <div class="right-con">
+		    	<div>
+		    		<div>
+		    			<label>充值金额</label><input style="background: red;" type="text" placeholder="输入充值金额">
+		    			<input type="submit" value="充值">
+		    		</div>
+		    	</div>
+		    	<div>充值记录</div>
+		    	<ul class="record">
+		    		<li><span>50元</span><span>2018-1-12</span></li>
+		    		<li><span>50元</span><span>2018-1-12</span></li>
+		    		<li><span>50元</span><span>2018-1-12</span></li>
+		    	</ul>
+		    </div>
+		</div>
+	</div>
+</body>
+</html>

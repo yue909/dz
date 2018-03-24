@@ -1,0 +1,96 @@
+<extend name="Publice:index" />
+<block name="header">
+	  <div class="mws-panel grid_8">
+        <h2>用户信息修改</h2>
+        <div class="mws-panel-header">
+            <span><i class="icon-ok"></i>用户信息修改</span>
+        </div>
+        <div class="mws-panel-body no-padding">
+            <form id="mws-validate" class="mws-form" action="__URL__/doupdate" method="post">
+                <div id="mws-validate-error" class="mws-form-message error" style="display:none;"></div>
+                <div class="mws-form-inline">
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">openid</label>
+                        <div class="mws-form-item">
+                            <input type="hidden" name='id' value="{$res['id']}">
+                            <input type="text" name="username" class="required large" value="{$res['openid']}">
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">pid</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="pid" value="{$res['pid']}" class="required digits large">
+                        </div>
+                    </div>
+                
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">电话</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="phone" value="{$res['phone']}" class="required digits large">
+                        </div>
+                    </div>
+
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">头像</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="avatar" class="required url large" value="{$res['avatar']}">
+                        </div>
+                    </div>
+
+                      <div class="mws-form-row">
+                        <label class="mws-form-label">状态</label>
+                        <div class="mws-form-item ">
+                                <select name="status">
+                                     <if condition="$res['status'] == 0">
+                                            <option value="1" selected="selected">
+                                                否
+                                            </option>
+                                            <option value="2" >
+                                                是
+                                            </option>
+                                        <else/>
+                                            <option value="2" selected="selected">
+                                                是
+                                            </option>
+                                            <option value="0" >
+                                                否
+                                            </option>
+                                        </if>
+                                    
+                                </select>                               
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">余额</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="moneyjine" class="required url large" value="{$res['moneyjine']}">
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">累计收入</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="money_total" class="required url large" value="{$res['money_total']}">
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">关注邀请链接</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="invite_url" class="required url large" value="{$res['invite_url']}">
+                        </div>
+                    </div>
+                    
+                   
+            
+                </div>
+                <div class="mws-button-row">
+                    <input type="submit" class="btn btn-success" value='执行修改'>
+                </div>
+            </form>
+        </div>      
+    </div>
+</block>

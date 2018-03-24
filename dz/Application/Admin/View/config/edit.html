@@ -1,0 +1,69 @@
+<extend name="Publice:index" />
+<script src="https://cdn.bootcss.com/select2/4.0.6-rc.1/js/select2.full.js"></script>
+<link href="https://cdn.bootcss.com/select2/4.0.4/css/select2.min.css" rel="stylesheet">
+<block name="header">
+	<div class="mws-panel grid_8">
+        <h2>修改展示模板</h2>
+        <div class="mws-panel-header">
+            <span><i class="icon-ok"></i> 修改展示模板</span>
+        </div>
+        <div class="mws-panel-body no-padding">
+            <form id="mws-validate" class="mws-form" action="__URL__/update" method="post" enctype="multipart/form-data">
+                    
+                <div id="mws-validate-error" class="mws-form-message error" style="display:none;"></div>
+                <div class="mws-form-inline">
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">键名</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="key" value="{$res['key']}" class="required large">
+                            <input type="hidden" name="id" value="{$res['id']}">
+                        </div>
+                    </div>
+
+              	    <div class="mws-form-row">
+                        <label class="mws-form-label">键值</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="value"  class="required email large" value="{$res['value']}">
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">中文名</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="name"  class="required email large" value="{$res['name']}">
+                        </div>
+                    </div>
+
+                      <div class="mws-form-row">
+                        <label class="mws-form-label">状态</label>
+                        <div class="mws-form-item ">
+                                <select name="status">
+                                     <if condition="$res['status'] == 0">
+                                            <option value="0" selected="selected">
+                                              开启
+                                            </option>
+                                            <option value="1" >
+                                               关闭
+                                            </option>
+                                        <else/>
+                                            <option value="1" selected="selected">
+                                                关闭
+                                            </option>
+                                            <option value="0" >
+                                               开启
+                                            </option>
+                                        </if>
+                                    
+                                </select>                               
+                        </div>
+                    </div>
+
+                  
+                  
+                <div class="mws-button-row">
+                    <input type="submit" class="btn btn-success" value='提交修改'>
+                </div>
+            </form>
+        </div>      
+    </div>
+</block>

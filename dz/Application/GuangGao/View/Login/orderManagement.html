@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>爱阅赚</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admins/css/reset.css" />
+	<style type="text/css">
+		body{
+			background: #ccc;
+		}
+		.clearfix:after{content:"";display:block;height:0;clear:both;visibility:hidden}
+		.clearfix{*zoom:1}
+		.fl{
+			float: left;
+		}
+		.fr{
+			float: right;
+		}
+		.header-wrap{
+			background: #fff;
+		}
+		#ade-header{
+			height: 90px;
+			/*background: red;*/
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			width: 1200px;
+			margin: 0 auto;
+			/*background: #fff;*/
+		}
+		#ade-header .left{
+			display: flex;
+			align-items: center;
+		}
+		#ade-header .right{
+			display: flex;
+			align-items: center;
+		}
+		#ade-header .right .guanggaozhu{
+			background-color: yellow;
+			text-align: center;
+		}
+		.logopic{
+			display: inline-block;
+			width: 50px;
+			height: 50px;
+			background: black;
+		}
+		.avtor{
+			display: inline-block;
+			background: green;
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+		}
+		.avtor img{
+			width: 100%;
+		}
+		.advertising{
+			/*background: green;*/
+			border: 1px solid #ccc;
+			height: 120px;
+			display: flex;
+			justify-content: space-around;
+		}
+		.advertising > div{
+			flex: 1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.advertising .middle{
+			/*display: flex;*/
+			/*align-items: center;*/
+		}
+		.advertising .right a:nth-of-type(1){
+			background: red;
+			width: 92px;
+			height: 42px;
+			text-align: center;
+			line-height: 42px;
+			color: #fff;
+			margin-right: 20px;
+		}
+		.advertising .right a:nth-of-type(2){
+			background: green;
+			width: 92px;
+			height: 42px;
+			text-align: center;
+			line-height: 42px;
+			color: #fff;
+			margin-right: 20px;
+		}
+		.advertising .right a:nth-of-type(3){
+			width: 92px;
+			height: 42px;
+			text-align: center;
+			color: black;
+			display: inline-flex;
+			align-items: flex-end;
+		}
+		.advertising .middle >div{
+			flex: 1;
+		}
+		.ade-menuBox{
+			/*background: yellow;*/
+			display: flex;
+		}
+		.wraper{
+			width: 1200px;
+			margin: 0 auto;
+			background: #fff;
+		}
+		.ade-menuBox .left-menu{
+			width: 178px;
+			/*background: blue;*/
+			text-align: center;
+			box-sizing: border-box;
+		}
+		.ade-menuBox .left-menu a{
+			display: block;
+			border: 1px solid red;
+			height: 30px;
+			line-height: 30px;
+		}
+		.right-con{
+			/*background: red;*/
+			width: 1022px;
+			min-height: 600px;
+			box-sizing: border-box;
+		}
+		table{
+			font-family: verdana,arial,sans-serif;
+			font-size:11px;
+			color:#333333;
+			width: 100%;
+		}
+		table tr{
+			width: 100%;
+		}
+		table th{
+			padding: 8px;
+			font-size: 14px;
+			background: #eee;
+		}
+		table td{
+			text-align: center;
+			padding: 8px;
+		}
+		.order-header{
+			display: flex;
+			height: 50px;
+			align-items: center;
+		}
+		.search-input{
+			padding-left: 10px;
+		}
+		.order-header input:nth-of-type(1){
+			border: 1px solid #ccc;
+			min-width: 300px;
+			height: 35px;
+			box-sizing: border-box;
+		}
+		.order-header input:nth-of-type(2){
+			width: 80px;
+			background-color: red;
+			height: 35px;
+			box-sizing: border-box;
+		}
+		.more-shaixuan{
+			cursor: pointer;
+			width: 150px;
+			flex: none;
+		}
+		.order-header .drop-icon{
+			display: inline-block;
+			width: 20px;
+			height: 20px;
+			background: red;
+		}
+		.order-header > div{
+			display: flex;
+			justify-content: center;
+		}
+		.drop-con{
+			display: none;
+		}
+		.drop-con > div{
+			float: left;
+		}
+	</style>
+	<script type="text/javascript" src="__PUBLIC__/Admins/js/laydate/laydate.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Admins/js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	<!--头部-->
+	<div class="header-wrap">
+		<div id="ade-header">
+			<div class="left"><span class="logopic"></span><span>爱阅赚</span></div>
+			<div class="right">
+				<span class="avtor">
+					
+				</span>
+				<div>
+					<div>微信名字</div>
+					<div class="guanggaozhu">广告主</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="wraper">
+		<!--第一个版块，广告主基本信息-->
+		<div class="advertising">
+			<div class="left">
+				<div>
+					<div>
+						<span>中直</span>
+						<span style="display: inline-block;background: green;width: 20px;height: 15px;"></span>
+						<a href="#">如何升级？企业认证</a>
+					</div>
+					<div>
+						<span>181****8431</span>
+						<span style="display: inline-block;background-color: red;width: 20px;height: 15px;margin-left: 50px;"></span>
+						<a href="#">BUG</a>
+					</div>
+				</div>
+			</div>
+			<div class="middle">
+				<div class="mid-lf">
+					<div>钱包余额</div>
+					<div>0.00元</div>
+				</div>
+				<div class="mid-md">
+					<div>待确认订单</div>
+					<div>0个</div>
+				</div>
+				<div class="mid-rt">
+					<div>待支付订单</div>
+					<div>0个</div>
+				</div>
+			</div>
+			<div class="right">
+				<a href="#">投软文</a>
+				<a href="#">投贴片</a>
+				<a href="#">如何投放？</a>
+			</div>
+		</div>
+		<div class="ade-menuBox">
+		    <!--第二个版块，左边菜单-->
+		    <div class="left-menu">
+		        <a href="__MODULE__/Index/extension.html"><div class="left-menu-btn left-menu-btn-on">推广管理</div></a>
+		        <a href="__MODULE__/Login/orderManagement.html"><div class="left-menu-btn">订单管理</div></a>
+		        <a href="__MODULE__/Login/InvoiceManagement.html"><div class="left-menu-btn">充值</div></a>
+		        <!-- <a href="wallet.html"><div class="left-menu-btn">新榜钱包</div></a> -->
+		        <!-- <a href="blacklist.html"><div class="left-menu-btn">黑名单</div></a> -->
+		    </div>
+		    <div class="right-con">
+		    	<form action="#">
+    		    	<div class="order-header">
+    		    		<div class="search-input">
+    		    			<input type="text" placeholder="输入公众号、昵称、或ID搜索订单">
+    		    			<!-- <a href="#">搜索</a> -->
+    		    			<input type="submit" value="搜索">
+    		    		</div>
+    		    		<div class="more-shaixuan" onclick="moreSelect()"><span id="moreSelectText">更多筛选</span><span class="drop-icon"></span></div>
+    		    		<div style="font-size: 12px;">*该页面仅展示竞询广告订单，自媒宝和贴片广告订单请在推广管理详情页查看</div>
+    		    	</div>
+    		    	<div class="drop-con">
+    		    		<div class="clearfix">
+    		    			<div class="fl">订单状态</div>
+    			    		<div class="fl">
+    			    			<select name="" id="order-status">
+    			    				<option value="">请选择</option>
+    			    				<option value="">未付款</option>
+    			    				<option value="">成功付款</option>
+    			    				<option value="">交易完成</option>
+    			    			</select>
+    			    		</div>
+    		    		</div>
+    		    		<div class="clearfix">
+    		    			<div>
+    		    				<label for="">投放时间</label>
+    		    				<input type="text" id="date1" style="background: red">
+    		    				<input type="text" id="date2" style="background: green">
+    		    			</div>
+    		    		</div>
+    		    		<div class="clearfix">
+    		    			<div class="fl">订单类型</div>
+    		    			<div class="fl">
+    		    				<select name="" id="order-type">
+    		    					<option value="">请选择</option>
+    		    					<option value="">寻购</option>
+    		    					<option value="">竞标</option>
+    		    				</select>
+    		    			</div>
+    		    		</div>
+    		    		<div class="clearfix">
+    		    			<!-- <div class="fl" style="background: red;cursor: pointer;">确认</div> -->
+    		    			<div onclick="clearDropValue()" class="fr" style="background: yellow;cursor: pointer;">清除</div>
+    		    		</div>
+    		    	</div>
+		    	</form>
+		    	<table>
+		    		<tr>
+		    			<th>投放账号</th>
+		    			<th>投放日期</th>
+		    			<th>价格</th>
+		    			<th>实付款</th>
+		    			<th>全部状态</th>
+		    			<th>操作</th>
+		    		</tr>
+		    		<tr>
+		    			<td>编号1</td>
+		    			<td>推广名称1</td>
+		    			<td>投放时间1</td>
+		    			<td>阅读单价1</td>
+		    			<td>投放金额1</td>
+		    			<td>投放曝光量1</td>
+		    		</tr>
+		    	</table>
+		    </div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		laydate.render({
+		  elem: '#date1', //指定元素
+		});
+		laydate.render({
+		  elem: '#date2', //指定元素
+		});
+		var flag = true;
+		function moreSelect() {
+			if (flag) {
+				$(".drop-con").css('display','block');
+				flag = false;
+				$("#moreSelectText").html("收起")
+			}else{
+				$(".drop-con").css('display','none');
+				flag = true;
+				$("#moreSelectText").html("更多筛选")
+			}
+			
+		}
+		function clearDropValue() {
+			console.log(9999)
+			$("#order-status").val('')
+			$("#date1").val('') 
+			$("#date2").val('')
+			$("#order-type").val('')
+		}
+	</script>
+</body>
+</html>

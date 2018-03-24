@@ -1,0 +1,84 @@
+<extend name="Publice:index"/>
+<block name="header">
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.js"></script>
+<div class="page_title">
+ <h2 class="fl">添加文章</h2>
+ <a href="__MODULE__/RuanWen/lists" class="fr top_rt_btn add_icon">文章列表</a>
+</div>
+<center>
+	<div style="width: 80%">
+		<form action="?op=save" enctype="multipart/form-data" method="post">
+			<span style="position: absolute;left: 10px;">分类：</span>
+			<div style="float: left;">
+				<select name="category" style="width: 150px;">
+			      <foreach name="category" item="vo">
+			      	<option value="{$vo.id}">{$vo.name}</option>
+			      </foreach>
+				</select>
+			</div>
+			<br><br>
+
+
+			<span style="position: absolute;left: 10px;">分享标题：</span>
+			<input type="text" name="title" class="textbox textbox_225" style="width: 100%;margin-bottom: 15px;" placeholder="标题 (分享标题)"/><br>
+			<span style="position: absolute;left: 10px;">分享描述：</span>
+			<input type="text" name="describe" class="textbox textbox_225" style="width: 100%;margin-bottom: 15px;" placeholder="描述 (分享描述,为空取全文前100字)"/><br>
+			<span style="position: absolute;left: 10px;">文章内容：</span>
+			<div id="container" name="content"></div><br>
+			<span style="position: absolute;left: 10px;">分享图标：</span>
+		    <input type="file" name="thumb" class="textbox textbox_225" style="width: 100%;margin-bottom: 15px;box-sizing: border-box;height: 36px;" placeholder="图片"/><br>
+		    <span style="position: absolute;left: 10px;">阅读：</span>
+			<input type="text" name="read_num" class="textbox textbox_225" style="width: 100%;margin-bottom: 15px;" placeholder="阅读数量 可以不填写"/><br>
+			<span style="position: absolute;left: 10px;">分享：</span>
+			<input type="text" name="share_num" class="textbox textbox_225" style="width: 100%;margin-bottom: 15px;" placeholder="分享数量 可以不填写"/><br>
+            <span style="position: absolute;left: 10px;">佣金：</span>
+            <input type="text" name="money" class="textbox textbox_225" style="width: 100%;margin-bottom: 15px;" placeholder="佣金 单位：币(分) 可以不填写"/><br>
+			<span style="position: absolute;left: 10px;">广告搜索：</span>
+			<div class="mws-form-row" id="ruanwensousuo">
+                <!-- <label class="fl mws-form-label">广告搜索</label> -->
+                    <div class="mws-form-item" style="text-align: left;">
+                        <div class="col-md-6">
+                            <input type="text" class="ruanwen" class="required large">
+                            <a  class="btn btn-success shousuo">搜索</a>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="mws-form-row" style="text-align: left;">
+                <!-- <label class="mws-form-label" id="ruanwensousuoXox">对应广告</label> -->
+                    <div class="mws-form-item">
+                        <div class="col-md-6" name = 'rwid' id="nums"></div>
+                    </div>
+            </div>
+
+			<span style="position: absolute;left: 10px;">状态：</span>
+			<div style="margin-top: 15px;text-align: left;padding-bottom: 80px;">
+				<label><input name="status" type="radio" value="0" checked/>显示 </label>
+                <label><input name="status" type="radio" value="1" />隐藏 </label>
+                <input type="submit" class="link_btn" value="保存并发布"/>
+			</div>
+
+		</form>
+	</div>
+</center>
+     <script type="text/javascript">
+        var ue = UE.getEditor('container', {
+        	initialFrameHeight: 300
+        });
+
+        $('.shousuo').click(function(){
+            var rw = $(".ruanwen").val();
+            $.post("__URL__/shousuo",{rw : rw},function(data){
+                var num = '';
+                for (var i = data.length - 1; i >= 0; i--) {
+                    var titles = "<input type='checkbox'  name='ids[]' value='"+data[i].id+"'><a  href = '__MODULE__/RuanWen/preview?id="+data[i].id+"' target = 'blank' name='titles'>"+data[i].title+"</a><br>";
+                    num += titles;
+                }
+                $("#nums").html(num);
+            });
+        });
+
+     </script>
+</block>

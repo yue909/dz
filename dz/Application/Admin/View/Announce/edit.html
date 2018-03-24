@@ -1,0 +1,56 @@
+<extend name="Publice:index"/>
+<block name="header">
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.js"></script>
+<div class="page_title">
+ <h2 class="fl">修改公告</h2>
+ <a href="__MODULE__/Announce/lists" class="fr top_rt_btn add_icon">公告列表</a>
+</div>
+<center>
+	<div style="width: 80%;">
+		<input type="text" id="title" class="textbox textbox_225" style="width: 98%;margin-bottom: 15px;" placeholder="公告标题" value="{$announce['title']}" />
+        <script id="container" name="content" type="text/plain">
+        {$announce['content']}
+        </script><br>
+        <span style="position: absolute;left: 10px;">状态：</span>
+        <div style="position: absolute;left: 11%;">
+            <label><input name="status" type="radio" value="0" <if condition="$announce['status'] == '0'">checked</if> />显示 </label> 
+            <label><input name="status" type="radio" value="1" <if condition="$announce['status'] == '1'">checked</if>/>隐藏 </label> 
+        </div>
+
+		<input type="submit" class="link_btn" id="save" value="修改并发布"/>
+	</div>
+</center>
+     <script type="text/javascript">
+        var ue = UE.getEditor('container', {
+        	initialFrameHeight: 300
+        });
+        $("#save").click(function(){
+        	var title = $("#title").val();
+        	var container = ue.getContent();
+            var status = getRadio("status");
+        	if (title!=='' && container!=='') {
+        		$.post('__MODULE__/Announce/edit?op=save&id={$announce["id"]}', {title: title, content: container, status: status}, function(rData){
+        			alert(rData.msg);
+        			if (rData.code == 1) {
+        				window.location.href = '__MODULE__/Announce/lists';
+        			}
+        		});
+        	} else {
+        		alert('标题或正文不能为空！');
+        	}
+        });
+
+        function getRadio(name){
+            var chkObjs = null;
+            var obj = document.getElementsByName(name);
+            for (var i = 0; i < obj.length; i++){ //遍历Radio
+                if(obj[i].checked) { 
+                    chkObjs=obj[i].value; 
+                }
+            }
+            return chkObjs;
+        }
+     </script>
+</block>

@@ -1,0 +1,238 @@
+<extend name="Publice:index" />
+<script src="https://cdn.bootcss.com/select2/4.0.6-rc.1/js/select2.full.js"></script>
+<link href="https://cdn.bootcss.com/select2/4.0.4/css/select2.min.css" rel="stylesheet">
+<block name="header">
+	<div class="mws-panel grid_8">
+        <h2>添加前台展示广告</h2>
+        <div class="mws-panel-header">
+            <span><i class="icon-ok"></i> 添加新广告</span>
+        </div>
+        <div class="mws-panel-body no-padding">
+            <form id="mws-validate" class="mws-form" action="__URL__/insert" method="post" enctype="multipart/form-data">
+
+                <div id="mws-validate-error" class="mws-form-message error" style="display:none;"></div>
+                <div class="mws-form-inline">
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">广告标题</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="title" class="required large">
+                        </div>
+                    </div>
+
+              	    <div class="mws-form-row">
+                        <label class="mws-form-label">链接地址</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="url" class="required email large" value="http://">
+                        </div>
+                    </div>
+
+                   <div class="mws-form-row">
+                        <label class="mws-form-label">推广模式</label>
+                        <div class="mws-form-item">
+                            <select class="required large" name="tgms">
+                                <option>--请选择--</option>
+                                <!-- <option value="0">CPM(弹窗付费)</option> -->
+                                <option value="1">CPC(点击付费)</option>
+                                <!-- <option value="2">CPS(成功销售付费)</option> -->
+                                <option value="3">CPV(展示付费)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">单价</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="money" class="required large">
+                        </div>
+                    </div>
+
+                     <div class="mws-form-row">
+                        <label class="mws-form-label">预算金额</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="budget" class="required large" >
+                        </div>
+                    </div>
+
+                     <div class="mws-form-row">
+                        <label class="mws-form-label">消费金额</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="expense" class="required large" value="0">
+                        </div>
+                    </div>
+
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">结算方式</label>
+                        <div class="mws-form-item">
+                            <select class="required large" name="jsfs">
+                                <option>--请选择--</option>
+                                <option value="0">微信</option>
+                                <option value="1">支付宝</option>
+                             </select>
+                        </div>
+                    </div>
+
+
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">结算周期</label>
+                        <div class="mws-form-item">
+                            <select class="required large" name="jszq">
+                                <option>--请选择--</option>
+                                <option value="0">天</option>
+                                <option value="1">月</option>
+                                <option value="2">年</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">备注</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="remark" class="required large">
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">广告状态</label>
+                        <div class="mws-form-item">
+                            <select class="required large" name="status">
+                                <option>--请选择--</option>
+                                <option value="0">上线</option>
+                                <option value="1">下线</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">投放位置</label>
+                        <div class="mws-form-item">
+                            <select onchange="selectRuanwen2()" class="required large" id="selectRuanwen" name="type">
+                                <option>--请选择--</option>
+                                <option value="0">所有文章</option>
+                                <option value="1">指定文章</option>
+                                <option value="2">指定分类</option>
+                             </select>
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row" id="ruanwensousuo">
+                        <label class="mws-form-label">文章搜索</label>
+                        <div class="mws-form-item">
+                             <div class="col-md-6">
+                                <input type="text" class="ruanwen" class="required large">
+                                <a  class="btn btn-success shousuo">搜索</a>
+                             </div>
+                        </div>
+                    </div>
+
+                     <div class="mws-form-row" id="fenleisousuo">
+                        <label class="mws-form-label">分类搜索</label>
+                        <div class="mws-form-item">
+                             <div class="col-md-6">
+                                <input type="text" class="fenlei" class="required large">
+                                <a  class="btn btn-success fenleishousuo">搜索</a>
+                             </div>
+                        </div>
+                    </div>
+
+
+                    <div class="mws-form-row" id="duiyingruanwen2018">
+                        <label class="mws-form-label" id="ruanwensousuoXox">对应软文</label>
+                        <div class="mws-form-item">
+                             <div class="col-md-6" name = 'rwid' id="nums">
+                             </div>
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row" id="duiyingfenlei2018">
+                        <label class="mws-form-label">对应分类</label>
+                        <div class="mws-form-item">
+                             <div class="col-md-6" name = 'flid' id="numss">
+                             </div>
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">展示模板</label>
+                        <div class="mws-form-item">
+                            <select name="zsxg">
+                                <foreach name="template" item="list">
+                                    <option value="{$list['id']}">
+                                        {$list['name']}
+                                    </option>
+                                </foreach>
+                            </select>
+                        </div>
+                    </div>
+
+                     <div class="mws-form-row">
+                        <label class="mws-form-label">展示方式</label>
+                        <div class="mws-form-item">
+                            <select  class="required large"  name="display" style="width:120px">
+                                <option>--请选择--</option>
+                                <option value="0">单独展示</option>
+                                <option value="1">多个展示</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">上传图片</label>
+                        <div class="mws-form-item">
+                            <input type="file" name="pic" class="required digits large">
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="mws-button-row">
+                    <input type="submit" class="btn btn-success" value='提交添加'>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $('.shousuo').click(function(){
+            var rw = $(".ruanwen").val();
+            $.post("__URL__/shousuo",{rw : rw},function(data){
+                var num = '';
+                for (var i = data.length - 1; i >= 0; i--) {
+                    var titles = "<input type='checkbox'  name='ids[]' value='"+data[i].id+"'><a  href = '__MODULE__/RuanWen/preview?id="+data[i].id+"' target = 'blank' name='titles'>"+data[i].title+"</a><br>";
+                    num += titles;
+                }
+                $("#nums").html(num);
+            });
+        });
+
+        $('.fenleishousuo').click(function(){
+            var fl = $(".fenlei").val();
+            $.post("__URL__/fenleishousuo",{fl : fl},function(data){
+
+                var num = '';
+                for (var i = data.length - 1; i >= 0; i--) {
+                    var names = "<input type='checkbox'  name='idss[]' value='"+data[i].id+"'><a  href = '__MODULE__/RuanWen/preview?id="+data[i].id+"' target = 'blank' name='names'>"+data[i].name+"</a><br>";
+                    num += names;
+                }
+                $("#numss").html(num);
+            });
+        });
+
+        function selectRuanwen2(){
+            var value = $('#selectRuanwen').val()
+            if (value == '0') {
+                $('#ruanwensousuo,#fenleisousuo,#duiyingruanwen2018,#duiyingfenlei2018').hide()
+            }else if(value == "1"){
+                $('#duiyingruanwen2018,#ruanwensousuo').show();
+                $('#duiyingfenlei2018,#fenleisousuo').hide()
+            }else if(value == "2"){
+                $('#duiyingruanwen2018,#ruanwensousuo').hide();
+                $('#duiyingfenlei2018,#fenleisousuo').show()
+            }
+        }
+    </script>
+</block>

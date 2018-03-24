@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>爱阅赚</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admins/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admins/css/advertisers.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admins/css/layer.css" />
+</head>
+<body>
+	<!--头部-->
+	<div class="header-wrap">
+		<div id="ade-header">
+			<a href="__MODULE__/Index/index">
+				<div class="left">
+					<span class="logopic">
+						<img src="__PUBLIC__/Admins/images/logo.png">
+					</span>
+					<span style="color: #333;">爱阅赚</span>
+				</div>
+		    </a>
+			<div class="right">
+				<span class="avtor">
+					<img src="{$_SESSION['GuangGao']['avatar']}">
+				</span>
+				<div>
+					<div class="guanggaozhuName">{$_SESSION['GuangGao']['name']}</div>
+					<div class="guanggaozhu">广告主</div>
+				</div>
+				<a href="__MODULE__/Index/loginout" class="outBtn">退出登录</a>
+			</div>
+		</div>
+	</div>
+	<div class="wraper">
+		<!-- 第一个版块，广告主基本信息 -->
+		<div class="advertising">
+			<div class="left">
+				<div>
+					<div style="margin-bottom: 15px;">
+						<span style="margin-right: 20px;">{$_SESSION['GuangGao']['name']}</span>
+						<!-- <span style="display: inline-block;background: green;width: 20px;height: 15px;"></span> -->
+						<!-- <a href="#">如何升级？企业认证</a> -->
+					</div>
+					<div class="personname-wrap">
+						<span>{$_SESSION['GuangGao']['phone']}</span>
+						<span class="WX-ICON"><img src="__PUBLIC__/Admins/images/WX.jpg"></span>
+						<a class="personname" href="#">{$_SESSION['GuangGao']['nickname']}</a>
+						<a class="change-btn" href="#">绑定</a>
+					</div>
+				</div>
+			</div>
+			<div class="middle">
+				<div class="mid-lf">
+					<div style="margin-bottom: 15px;">钱包余额</div>
+					<div style="margin-left:15px">{$userInfo['balances']}元</div>
+				</div>
+
+				<div class="mid-lf">
+					<div style="margin-bottom: 15px;">消费金额</div>
+					<div style="margin-left:15px">{$userInfo['consumption']}元</div>
+				</div>
+
+				<div class="mid-md">
+					<div style="margin-bottom: 15px;">全部广告</div>
+					<div style="margin-left:20px">{$total}个</div>
+				</div>
+				<div class="mid-rt">
+					<div style="margin-bottom: 15px;">待审核广告</div>
+					<div style="margin-left:20px">{$toAudit}个</div>
+				</div>
+			</div>
+			<div class="right">
+				<a href="__MODULE__/Index/advertorial">投广告</a>
+
+				<!-- <a href="#">如何投放？</a> -->
+			</div>
+		</div>
+		<div class="ade-menuBox">
+		    <!--第二个版块，左边菜单-->
+		    <div class="left-menu">
+		        <a href="__MODULE__/Index/index"><div class="left-menu-btn <?php if(ACTION_NAME == 'index') {echo 'left-menu-btn-on active';}?>">推广管理</div></a>
+		        <!-- <a href="__MODULE__/Index/indent"><div class="left-menu-btn">订单管理</div></a> -->
+		        <a href="__MODULE__/Index/InvoiceManagement"><div style="border-bottom: 1px solid #ccc;" class="left-menu-btn <?php if(ACTION_NAME == 'InvoiceManagement') {echo 'left-menu-btn-on active';}?>">充值</div></a>
+		        <!-- <a href="wallet.html"><div class="left-menu-btn">新榜钱包</div></a> -->
+		        <!-- <a href="blacklist.html"><div class="left-menu-btn">黑名单</div></a> -->
+		    </div>
+		    <div class="right-con">
+		    	<block name="public"></block>
+		    </div>
+		</div>
+	</div>
+	<script type="text/javascript" src="__PUBLIC__/Admins/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Admins/js/layer/layer.js"></script>
+	<script type="text/javascript">
+		var isBind = false;
+		var wechatBind = [];
+		$(document).ready(function () {
+			var personname = $(".personname").html();
+			if (personname == "" || personname == null || personname == undefined) {
+				$(".personname").html("未绑定");
+			}
+			if ($(".avtor").find("img").attr("src") == '') {
+				$(".avtor").find("img").attr("src", "http://new-weizhuan.oss-cn-shenzhen.aliyuncs.com/common/avatar.jpeg");
+			}
+		})
+		$(".personname-wrap").hover(function () {
+			if ($(".personname").html() == "未绑定") {
+				$(".change-btn").html('绑定').css('visibility','visible')
+			}else{
+				$(".change-btn").html('更换').css('visibility','visible')
+			}
+		},function () {
+			$(".change-btn").css('visibility','hidden')
+		})
+		$(".change-btn").click(function () {
+			if ($(this).html()=="绑定") {
+				startBind();
+			} else if($(this).html()=="更换") {
+				unBind();
+			}
+		})
+		$("#ade-header").find(".right").hover(function () {
+			$(".outBtn").css("visibility","visible")
+		},function () {
+			$(".outBtn").css("visibility","hidden")
+		})
+
+		//解除绑定
+		function unBind() {
+			isBind = true;
+			$.post("__MODULE__/Api/unbindQrcode", "", function(req){
+				if (req.code == 0) {
+					wechatBind = layer.open({
+					  title: '更改绑定验证',
+					  type: 1,
+					  area: ['520px', '340px'], //宽高
+					  content: '<div style="text-align:center;padding:10px;">用微信扫描二维码进行绑定</div><div style="text-align:center;padding:10px;"><img style="width: 230px;" src="' + req.data + '"></div>',
+					  cancel: function(index, layero){
+					  	isBind = false;
+						layer.close(index);
+					  }
+					});
+					detectionUnBind();
+				} else {
+					layer.msg(req.msg);
+				}
+			});
+		}
+
+		//开始绑定
+		function startBind() {
+			isBind = false;
+			$.post("__MODULE__/Api/qrcode", "", function(req){
+				if (req.code == 0) {
+					wechatBind = layer.open({
+					  title: '绑定微信号',
+					  type: 1,
+					  area: ['520px', '340px'], //宽高
+					  content: '<div style="text-align:center;padding:10px;">用微信扫描二维码进行绑定</div><div style="text-align:center;padding:10px;"><img style="width: 230px;" src="' + req.data + '"></div>',
+					  cancel: function(index, layero){
+					  	isBind = true;
+						layer.close(index);
+					  }
+					});
+					detectionBind();
+				} else {
+					layer.msg(req.msg);
+				}
+			});
+		}
+
+
+		//检查解除绑定
+		function detectionUnBind() {
+			if (isBind) {
+				$.get("__MODULE__/Api/detectionwx", "", function(req){
+					if (req.code == 0) {
+						//绑定成功
+						isBind = false;
+						layer.close(wechatBind);
+						startBind();
+					} else {
+						//绑定未成功
+						setTimeout("detectionUnBind()", 2000);
+					}
+				});
+			}
+		}
+
+		//检查是否绑定
+		function detectionBind() {
+			if (!isBind) {
+				$.get("__MODULE__/Api/detectionwx", "", function(req){
+					if (req.code == 1) {
+						//绑定成功
+						$(".avtor").find("img").attr("src", req.avatar);
+						isBind = true;
+						layer.close(wechatBind);
+						layer.msg("绑定成功！");
+						setTimeout(function(){
+							window.location.reload();
+						}, 2000);
+					} else {
+						//绑定未成功
+						setTimeout("detectionBind()", 2000);
+					}
+				});
+			}
+		}
+
+	</script>
+</body>
+</html>

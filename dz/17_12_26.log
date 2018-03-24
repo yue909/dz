@@ -1,0 +1,6 @@
+[ 2017-12-26T20:25:18+08:00 ] 127.0.0.1 /index.php/Admin/Config/Sync/id/30
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000005s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000026s ]
+ERR: syntax error, unexpected '-'
+

@@ -1,0 +1,38 @@
+<extend name="Publice:index" />
+<block name="header">
+<div class="mws-panel grid_8">
+        <h2>后台管理角色添加</h2>
+        <div class="mws-panel-header">
+            <span><i class="icon-ok"></i> 添加角色</span>
+        </div>
+        <div class="mws-panel-body no-padding">
+            <form id="mws-validate" class="mws-form" action="__URL__/jsadd" method="post">
+                <div id="mws-validate-error" class="mws-form-message error" style="display:none;"></div>
+                <div class="mws-form-inline">
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">角色名称</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="name" class="required large">
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">角色描述</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="remark" class="required large" value="管理-》">
+                        </div>
+                    </div>
+                    <!-- <div class="mws-form-row">
+                        <label class="mws-form-label">用户头像</label>
+                        <div class="mws-form-item">
+                            <input type="file" name="picture" class="required" >
+                            <label for="picture" class="error" generated="true" style="display:none"></label>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="mws-button-row">
+                    <input type="submit" class="btn btn-success" value='提交添加'>
+                </div>
+            </form>
+        </div>      
+    </div>
+</block>

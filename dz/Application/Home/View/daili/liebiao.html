@@ -1,0 +1,55 @@
+<extend name="Publice:index" />
+<block name="header">
+	 <div class="mws-panel grid_8">
+        <h2>顶级代理</h2>
+        <div>
+            <form name="fsoso" method="post" action="{:U('search')}" style="width:550px">
+            <input type="text" name="aci" class="dfinput" value="" style="width:200px" />
+            <input  type="submit" class="btn" value="查询" >
+        </form>
+        </div>
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i>用户列表</span>
+           
+        </div>
+        <div class="mws-panel-body no-padding">
+            <table class="mws-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>用户名</th>
+                        <th>手机号</th>
+                        <th>收入</th>
+                        <th>佣金比例</th>
+                        <th>修改比例/添加比例</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <foreach name='list' item='row'>
+                    <tr>
+                        <td style=" text-align: center;">{$row['id']}</td>
+                        <td style=" text-align: center;">{$row['username']}</td>
+                        <td style=" text-align: center;">{$row['phone']}</td>
+                        
+                        <td style=" text-align: center;">{$row['yj']}</td>
+                        <if condition="$row['stair'] !== null">
+                            <td style=" text-align: center;">1级佣金比例{$row['stair']}%||2级佣金比例{$row['second_level']}%</td>
+                        <else/>
+                            <td style=" text-align: center;">公共佣金比例</td>
+                        </if>
+                        <td  style=" text-align: center;">
+                             <a href="__URL__/usercommission/id/{$row['id']}" class="btn btn-warning">修改/添加</a>
+                        </td>
+                    </tr>
+                        
+                   </foreach>
+
+                </tbody>
+                <tr><td colspan="8" align="center">{$fen}</td></tr>
+            </table>
+        </div>
+    </div>
+</block>
+
+
+

@@ -1,0 +1,89 @@
+<extend name="Publice:index" />
+<block name="header">
+<div class="page_title">
+ <h2 class="fl">文章列表</h2>
+ <a href="__MODULE__/RuanWen/add" class="fr top_rt_btn add_icon">添加文章</a>
+</div>
+  <div style="position: absolute;left: 0px;width: 40%;">
+    <form action="?op=search" method="get">
+      <select name="category" style="width: 150px;">
+        <option value="0">全部</option>
+        <foreach name="category" item="vo">
+          <if condition="$vo.id == $category_val">
+            <option value="{$vo.id}" selected = "selected" >{$vo.name}</option>
+          <else/>
+            <option value="{$vo.id}">{$vo.name}</option>
+          </if>
+        </foreach>
+      </select>
+
+  		<input type="text" style="position: absolute;margin-left: 10px;" name="search" class="textbox textbox_225" placeholder="标题搜索" value="{$search}" />
+      <!-- <input type="submit" name="submit_type" style="height: 30px;line-height: 14px;float: right;margin-left: 10px;" class="link_btn" value="删除"/> -->
+      <input type="submit" name="submit_type" style="height: 30px;line-height: 14px;float: right;" class="link_btn" value="搜索"/>
+    </form>
+  </div>
+  <br><br>
+  <table class="table">
+   <tr>
+    <th width="3%;">Id</th>
+    <th width="50%;">文章</th>
+    <th width="5%;">分类</th>
+    <th width="5%;">佣金</th>
+    <th width="10%;">阅读/分享</th>
+    <th width="5%;">状态</th>
+    <th>更新时间</th>
+    <th>操作</th>
+   </tr>
+
+   <foreach name="list" item="vo">
+     <tr>
+      <td>{$vo.id}</td>
+      <td>
+      	<p>
+      		<img src="{$vo.thumb}" style="width: 50px;height: 50px;">
+      		<a style="top: 20%;left: 15%;position: absolute;" href="__MODULE__/RuanWen/preview?id={$vo.id}" target="_blank">{$vo.title}</a>
+      		<span style="top: 52%;left: 15%;position: absolute;">{$vo.describe}</span>
+
+      	</p>
+      </td>
+      <td>{$vo.name}</td>
+      <td>{$vo.money}币</td>
+      <td><p>{$vo.read_num}次 / {$vo.share_num}次</p></td>
+      <td>
+        <p>
+      	<if condition="$vo.status == '0'">
+      		<span style="color: #19a97b;">显示</span>
+      	<else/>
+      	    <span style="color: #e03646;">隐藏</span>
+          </if>
+        </p>
+      </td>
+      <td>{$vo.update_time|date="Y-m-d H:i:s",###}</td>
+      <td>
+       <a href="__MODULE__/RuanWen/edit?id={$vo.id}" title="编辑" class="link_icon">&#101;</a>
+       <a href="#" title="删除" class="link_icon" onclick="Delete({$vo.id})">&#100;</a>
+      </td>
+     </tr>
+   </foreach>
+  </table>
+  <aside class="paging">
+  {$page}
+  </aside>
+
+<script type="text/javascript">
+  function Delete(id) {
+    //alert('删除成功！');
+    var result = confirm("id:" + id + " 是否删除？");
+    if (result) {
+      $.post('__MODULE__/RuanWen/delete?id=' + id, '', function(rData){
+        if (rData.code == 1) {
+          window.location.reload();
+        }
+      });
+    }
+
+  }
+
+</script>
+
+</block>

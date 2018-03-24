@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=utf-8>
+        <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+        <title>我的二维码</title>
+        <script src="https://cdn.bootcss.com/qrcode-generator/1.2.0/qrcode.min.js"></script>
+    </head>
+    <body>
+        <img id="id" width="100%">
+        <script>
+            function generateImage(a,b,c,d,e,f,g,h,i){var j=new XMLHttpRequest,k=new Image,l=new Image,m=qrcode(e,f),n="",o="",p="";m.addData(h),m.make(),p=m.createImgTag(),j.open("GET",a,!0),j.responseType="blob",j.onload=function(){if(200==this.status){blob=this.response;var a=new FileReader;a.readAsDataURL(blob),a.onload=function(){k.src=this.result,k.onload=function(){l.src=p.substring(p.indexOf("src=")+5,p.indexOf("width")-2),l.onload=function(){n=document.createElement("canvas"),n.width=k.width,n.height=k.height,n.getContext("2d").drawImage(k,0,0),o=n.getContext("2d"),o.drawImage(l,b,c,d,d),i.call(this,n.toDataURL("image/jpeg",g)),n=null}}}}},j.send()}
+
+            generateImage("https://new-weizhuan.oss-cn-shenzhen.aliyuncs.com/ueditor/1515674822466720.jpg", 710, 1065, 270, 5, "L", 0.8, "{$url}", function(img) {
+                document.getElementById("id").src = img;
+            });
+
+        </script>
+    </body>
+</html>

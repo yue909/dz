@@ -1,0 +1,165 @@
+<extend name="Publice:index" />
+<block name="header">
+	 <div class="mws-panel grid_8">
+        <h2>用户列表展示</h2>
+        <div>
+            <form name="fsoso" method="post" action="__URL__/querysearch" style="width:550px">
+                <input type="text" name="userid" class="dfinput" value="{$aci}" style="width:200px" />
+                <input  type="submit" class="btn" value="查询" >
+
+            </form>
+        </div>
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i>用户数据</span>
+
+        </div>
+        <div class="mws-panel-body no-padding">
+            <table class="mws-table">
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>昵称</th>
+                        <th>头像</th>
+                        <th>手机号</th>
+                        <th>余额</th>
+                        <th>冻结金额</th>
+                        <th>累计收入</th>
+                        <th>加入时间</th>
+                        <th>账号状态</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td style=" text-align: center;">{$user['id']}</td>
+                        <td style=" text-align: center;">{$user['username']}</td>
+                        <td style=" text-align: center;"><img width="80px" src="{$user['avatar']}"></td>
+                        <td style=" text-align: center;">{$user['phone']}</td>
+                        <td style=" text-align: center;">{$user['money']}</td>
+                        <td style=" text-align: center;">{$user['money_freeze']}</td>
+                        <td style=" text-align: center;">{$user['money_total']}</td>
+                        <td style=" text-align: center;">{$user['create_time' | date="Y-m-d H:i:s",###]}</td>
+                        <if condition = "$row['status'] == 0">
+                        <td style=" text-align: center;">正常</td>
+                        </if>
+                        <if condition = "$row['status'] == 1">
+                        <td style=" text-align: center;">禁用</td>
+                        </if>
+                    </tr>
+                </tbody>
+                <tr><td colspan="8" align="center">{$fen}</td></tr>
+            </table>
+        </div>
+        <if condition = "$article">
+            <div class="mws-panel-header">
+                <span><i class="icon-table"></i>全部阅读</span>
+            </div>
+        <div class="mws-panel-body no-padding">
+            <table class="mws-table">
+                <thead>
+                    <tr>
+                        <th>文章ID</th>
+                        <th>文章名</th>
+                        <th>收益</th>
+                        <th>访客IP</th>
+                        <th>访客user_agent</th>
+                        <th>访客唯一标识符</th>
+                        <th>时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <foreach name='article' item='article'>
+                    <tr>
+                        <td style=" text-align: center;">{$article['article_id']}</td>
+                        <td style=" text-align: center;">{$article['title']}</td>
+                        <td style=" text-align: center;">{$article['money']}</td>
+                        <td style=" text-align: center;">{$article['ip']}</td>
+                        <td style=" text-align: center;" title="{$article['user_agent']}">查看</td>
+                        <td style=" text-align: center;">{$article['uuid']}</td>
+                        <td style=" text-align: center;">{$article['create_time' | date="Y-m-d H:i:s",###]}</td>
+                    </tr>
+                   </foreach>
+                </tbody>
+                <tr><td colspan="8" align="center">{$page}</td></tr>
+            </table>
+        </div>
+        <else/>
+            <if condition = "$list">
+            <div class="mws-panel-header">
+                <span><i class="icon-table"></i>全部收入</span>
+            </div>
+        <div class="mws-panel-body no-padding">
+            <table class="mws-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>收入金额</th>
+                        <th>收入来源备注</th>
+                        <th>收入之前余额</th>
+                        <th>收入之后余额</th>
+                        <th>收入时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <foreach name='list' item='list'>
+                    <tr>
+                        <td style=" text-align: center;">{$list['id']}</td>
+                        <td style=" text-align: center;">{$list['money']}</td>
+                        <td style=" text-align: center;">{$list['description']}</td>
+                        <td style=" text-align: center;">{$list['before_money']}</td>
+                        <td style=" text-align: center;">{$list['after_money']}</td>
+                        <td style=" text-align: center;">{$list['create_time' | date="Y-m-d H:i:s",###]}</td>
+                    </tr>
+                   </foreach>
+                </tbody>
+                <tr><td colspan="8" align="center">{$page}</td></tr>
+            </table>
+        </div>
+        <else/>
+            <div class="mws-panel-header">
+                <span><i class="icon-table"></i>全部提现</span>
+            </div>
+                  <div class="mws-panel-body no-padding">
+            <table class="mws-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>提现金额</th>
+                        <th>创建时间</th>
+                        <th>成功时间</th>
+                        <th>提现状态</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <foreach name='withdraw' item='withdraw'>
+                    <tr>
+                        <td style=" text-align: center;">{$withdraw['id']}</td>
+                        <td style=" text-align: center;">{$withdraw['money']}</td>
+                        <td style=" text-align: center;">{$withdraw['create_time' | date="Y-m-d H:i:s",###]}</td>
+                        <td style=" text-align: center;">{$withdraw['pay_time']}</td>
+                        <if condition = "$row['status'] == 0">
+                            <td style=" text-align: center;">未处理</td>
+
+                        </if>
+                        <if condition = "$row['status'] == 1">
+                            <td style=" text-align: center;">已提现</td>
+
+                        </if>
+                        <if condition = "$row['status'] == 2">
+                            <td style=" text-align: center;">驳回提现</td>
+
+                        </if>
+                    </tr>
+                   </foreach>
+                </tbody>
+
+                <tr><td colspan="8" align="center">{$page}</td></tr>
+
+            </table>
+            </if>
+            </if>
+        </div>
+
+</block>

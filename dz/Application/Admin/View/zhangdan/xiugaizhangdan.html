@@ -1,0 +1,62 @@
+<extend name="Publice:index" />
+<block name="header">
+<div class="mws-panel grid_8">
+        <h2>管理账单修改</h2>
+        <div class="mws-panel-header">
+            <span><i class="icon-ok"></i> 修改账单</span>
+        </div>
+        <div class="mws-panel-body no-padding">
+            <form id="mws-validate" class="mws-form" action="__URL__/doedit" method="post">
+                <div id="mws-validate-error" class="mws-form-message error" style="display:none;"></div>
+                <div class="mws-form-inline">
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">用户名</label>
+                        <div class="mws-form-item">
+                            <span>{$edit['username']}</span>
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">项目名称</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="remark" class="required large" value="{$edit['pname']}">
+                            <input type="hidden" name="id" value="{$edit['id']}">
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">分成模式</label>
+                        <div class="mws-form-item">
+                            <select name="pattern">
+                                <if condition="$edit['pattern'] == 0">
+                                    <option value = "0" selected = "selected">固定模式</option>
+                                    <option value = "1">比例模式</option>
+
+                                <elseif condition="$edit['pattern'] == 1"/>
+                                    <option value = "1" selected = "selected">比例模式</option>
+                                    <option value = "0">固定模式</option>
+                                
+                                </if>
+                            </select>
+                                
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">收入金额</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="money" class="required large" value="{$edit['money']}">
+                        </div>
+                    </div>
+                    <!-- <div class="mws-form-row">
+                        <label class="mws-form-label">用户头像</label>
+                        <div class="mws-form-item">
+                            <input type="file" name="picture" class="required" >
+                            <label for="picture" class="error" generated="true" style="display:none"></label>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="mws-button-row">
+                    <input type="submit" class="btn btn-success" value='确认修改'>
+                </div>
+            </form>
+        </div>      
+    </div>
+</block>

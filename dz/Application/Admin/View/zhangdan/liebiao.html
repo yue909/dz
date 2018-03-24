@@ -1,0 +1,54 @@
+<extend name="Publice:index" />
+<block name="header">
+	 <div class="mws-panel grid_8">
+        <h2>账单列表展示</h2>
+        <div style="margin-bottom: 16px;">
+        <form name="fsoso" method="post" action="{:U('search')}" style="width:550px">
+            <input type="text" name="name" class="dfinput" value="" style="width:200px" />
+            <input  type="submit" class="btn" value="查询" >
+            <a class= "btn" href="__URL__/add">添加</a>
+        </form>
+
+        </div>
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i> 用户列表</span>
+
+        </div>
+        <div class="mws-panel-body no-padding">
+            <table class="mws-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>用户名</th>
+                        <th>分成模式</th>
+                        <th>项目名称</th>
+                        <th>收入金额</th>
+                        <th>生成时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <foreach name='users' item='row'>
+                    <tr>
+                        <td style=" text-align: center;">{$row['uid']}</td>
+                        <td style=" text-align: center;">{$row['username']}</td>
+                        <if condition = "$row['pattern'] == 0">
+                        <td style=" text-align: center;">固定模式</td>
+                        <else/>
+                        <td style=" text-align: center;">比例模式</td>
+                        </if>
+                        <td style=" text-align: center;">{$row['pname']}</td>
+
+                        <td style=" text-align: center;">{$row['money']}</td>
+                        <td style=" text-align: center;">{$row['time']|date="Y-m-d H:i:s",###}</td>
+                        <td  style=" text-align: center;">
+                            <a href="__URL__/delete/id/{$row['id']}" class="btn btn-danger">删除</a>
+                            <a href="__URL__/edit/id/{$row['id']}" class="btn btn-warning">修改</a>
+                    </tr>
+                   </foreach>
+                </tbody>
+                <tr><td colspan="8" align="center">{$fen}</td></tr>
+            </table>
+        </div>
+    </div>
+</block>

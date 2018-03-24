@@ -1,0 +1,55 @@
+<extend name="Publice:index" />
+<script src="https://cdn.bootcss.com/select2/4.0.6-rc.1/js/select2.full.js"></script>
+<link href="https://cdn.bootcss.com/select2/4.0.4/css/select2.min.css" rel="stylesheet">
+<block name="header">
+	<div class="mws-panel grid_8">
+        <h2>修改展示模板</h2>
+        <div class="mws-panel-header">
+            <span><i class="icon-ok"></i> 修改展示模板</span>
+        </div>
+        <div class="mws-panel-body no-padding">
+            <form id="mws-validate" class="mws-form" action="__URL__/showcasedoedit" method="post" enctype="multipart/form-data">
+                    
+                <div id="mws-validate-error" class="mws-form-message error" style="display:none;"></div>
+                <div class="mws-form-inline">
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">模板名称</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="mbname" value="{$edit['name']}" class="required large">
+                        </div>
+                    </div>
+
+              	    <div class="mws-form-row">
+                        <label class="mws-form-label">备注</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="mbbz"  class="required email large" value="{$edit['remark']}">
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">模板代码</label>
+                        <div class="mws-form-item">
+                            <textarea name="mbdm" rows="3" cols="162" >{$edit['code']}</textarea>
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">状态</label>
+                        <div class="mws-form-item">
+                            <if condition="$edit['status'] == 0">
+                                <label> <input type="radio" value="0" checked="checked" name="mbzt"> 显示</label> 
+                                <label> <input type="radio" value="1" name="mbzt"> 不显示</label> 
+                            <else/>
+                                <label> <input type="radio" value="0" name="mbzt"> 显示</label> 
+                                <label> <input type="radio" value="1" checked="checked" name="mbzt"> 不显示</label> 
+                            </if>
+                        </div>
+                    </div>   
+                            <input type="hidden" name="id" class="required large" value="{$edit['id']}">
+                </div>
+                <div class="mws-button-row">
+                    <input type="submit" class="btn btn-success" value='提交修改'>
+                </div>
+            </form>
+        </div>      
+    </div>
+</block>

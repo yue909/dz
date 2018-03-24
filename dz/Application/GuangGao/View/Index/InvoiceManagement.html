@@ -1,0 +1,44 @@
+<extend name = "Public:extension" />
+<block name="public">
+    <div class="right-con">
+		<div class="chongzhimoney">
+			<div>
+				
+				<label>充值金额</label><input type="text" id="money" name="money" placeholder="输入充值金额">
+					<input type="submit" value="充值" onclick="showPay()">
+			</div>
+		</div>
+		<div style="margin:20px 0 1px 0;background: #ccc;padding: 10px 0;">充值记录</div>
+
+
+		<table>
+			<tr>
+				<th>充值金额</th>
+				<th>充值时间</th>
+			</tr>
+			<foreach name='list' item='row'>
+				<tr style="background-color: #eee;border-top: 1px solid #fff;">
+					<td>{$row['recharge']}</td>
+					<td>{$row['create_time']}</td>
+				</tr>
+			</foreach>
+		</table>
+		
+	</div>
+	<script type="text/javascript">
+		var payBox = [];
+		function showPay() {
+			var money = $("#money").val();
+			if (money == undefined || money == '') {
+				layer.msg("充值金额不能低于0.01元");
+				return;
+			}
+			layer.open({
+			  title: '请使用浏览器扫描二维码 (不要用微信扫码)',
+			  type: 1,
+			  area: ['520px', '340px'], //宽高
+			  content: '<div style="text-align:center;padding:10px;margin-top: 10px;">充值￥' + money + '</div><div style="text-align:center;padding:10px;"><img style="width: 230px;" src="__MODULE__/ChongZhi/erweima?money=' + money + '"></div>'
+			});
+		}
+	</script>
+</block>

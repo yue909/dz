@@ -1,0 +1,67 @@
+<extend name = "Public:extension" />
+<block name="public">
+			   		    <div class="right-con">
+		    	<form method="post" action="{:U('search')}" >
+    		    	<div class="order-header">
+    		    		<div class="search-input">
+    		    			<input type="text" placeholder="输入公众号、昵称、或ID搜索订单" name="aci" class="dfinput" value="{$aci}">
+    		    			<!-- <a href="#">搜索</a> -->
+    		    			<input type="submit" value="搜索">
+    		    		</div>
+    		    		<div class="more-shaixuan" onclick="moreSelect()"><span id="moreSelectText">更多筛选</span><span class="drop-icon"><img src="__PUBLIC__/Admins/images/dropicon.png"></span></div>
+    		    		<!-- <div style="font-size: 12px;">*该页面仅展示竞询广告订单，自媒宝和贴片广告订单请在推广管理详情页查看</div> -->
+    		    	</div>
+    		    	<div class="drop-con clearfix">
+    		    		<div class="clearfix">
+    		    			<div class="fl" style="margin-right: 5px;">订单状态</div>
+    			    		<div class="fl">
+    			    			<select name="" id="order-status">
+    			    				<option value=""> -- 请选择 -- </option>
+    			    				<option value="">待审核</option>
+    			    				<option value="">审核通过</option>
+    			    			</select>
+    			    		</div>
+    		    		</div>
+    		    		<div class="clearfix">
+    		    			<div>
+    		    				<label for="">投放时间</label>
+    		    				<input type="text" id="date1">
+    		    				<input type="text" id="date2">
+    		    			</div>
+    		    		</div>
+    		    		<!-- <div class="clearfix">
+    		    			<div class="fl">订单类型</div>
+    		    			<div class="fl">
+    		    				<select name="" id="order-type">
+    		    					<option value="">  请选择  </option>
+    		    					<option value="">寻购</option>
+    		    					<option value="">竞标</option>
+    		    				</select>
+    		    			</div>
+    		    		</div> -->
+    		    		<div class="clearfix">
+    		    			<!-- <div class="fl" style="background: red;cursor: pointer;">确认</div> -->
+    		    			<div onclick="clearDropValue()" class="fr">清除</div>
+    		    		</div>
+    		    	</div>
+		    	</form>
+		    	<table>
+		    		<tr>
+		    			<th>投放账号</th>
+		    			<th>投放日期</th>
+		    			<th>价格</th>
+		    			<th>实付款</th>
+		    			<th>全部状态</th>
+		    			<th>操作</th>
+		    		</tr>
+		    		<tr>
+		    			<td>编号1</td>
+		    			<td>推广名称1</td>
+		    			<td>投放时间1</td>
+		    			<td>阅读单价1</td>
+		    			<td>投放金额1</td>
+		    			<td>投放曝光量1</td>
+		    		</tr>
+		    	</table>
+		    </div>
+</block>

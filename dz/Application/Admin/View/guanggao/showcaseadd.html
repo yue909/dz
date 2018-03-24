@@ -1,0 +1,53 @@
+<extend name="Publice:index" />
+<script src="https://cdn.bootcss.com/select2/4.0.6-rc.1/js/select2.full.js"></script>
+<link href="https://cdn.bootcss.com/select2/4.0.4/css/select2.min.css" rel="stylesheet">
+<block name="header">
+	<div class="mws-panel grid_8">
+        <h2>添加展示模板</h2>
+        <div class="mws-panel-header">
+            <span><i class="icon-ok"></i> 添加展示模板</span>
+        </div>
+        <div class="mws-panel-body no-padding">
+            <form id="mws-validate" class="mws-form" action="__URL__/showcasedoadd" method="post" enctype="multipart/form-data">
+                    
+                <div id="mws-validate-error" class="mws-form-message error" style="display:none;"></div>
+                <div class="mws-form-inline">
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">模板名称</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="mbname" class="required large">
+                        </div>
+                    </div>
+
+              	    <div class="mws-form-row">
+                        <label class="mws-form-label">备注</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="mbbz" class="required email large" value="">
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">模板代码</label>
+                        <div class="mws-form-item">
+                            <textarea name="mbdm" rows="3" cols="162"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">状态</label>
+                        <div class="mws-form-item">
+                            <label><input type="radio" name="mbzt"  value= "0" >显示</label>
+                            <label><input type="radio" name="mbzt" value="1" >不显示</label>
+
+
+                        </div>
+                    </div>   
+                     
+                </div>
+                <div class="mws-button-row">
+                    <input type="submit" class="btn btn-success" value='提交添加'>
+                </div>
+            </form>
+        </div>      
+    </div>
+</block>

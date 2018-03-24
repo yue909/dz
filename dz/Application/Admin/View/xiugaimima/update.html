@@ -1,0 +1,106 @@
+<extend name="Publice:index" />
+<block name="header">
+	 <div class="mws-panel grid_8">
+        <h2>用户密码修改</h2>
+        <div class="mws-panel-header">
+            <span><i class="icon-ok"></i>用户密码修改</span>
+        </div>
+        <div class="mws-panel-body no-padding">
+            <form id="mws-validate" class="mws-form" action="__URL__/update" method="post">
+                <div id="mws-validate-error" class="mws-form-message error" style="display:none;"></div>
+                <div class="mws-form-inline">
+                    <div class="mws-form-row">
+                        <label class="mws-form-label ">原密码</label>
+                        <div class="mws-form-item">
+                            <input type="text" yz="请输入你的原密码" name="oldpwd" class="required large oldpwd" ><span></span>
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">新密码</label>
+                        <div class="mws-form-item">
+                            <input type="password" yz="请输入你的新密码" name="newpwd" class="required email large oldpwd"><span></span>
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">确认新密码</label>
+                        <div class="mws-form-item">
+                            <input type="password" yz="请再次输入你的新密码" name="repwd" class="required url large oldpwd"><span></span> 
+                        </div>
+                    </div>
+                </div>
+                <div class="mws-button-row">
+                    <input type="submit" class="btn btn-success" value='执行修改'>
+                </div>
+            </form>
+        </div>      
+    </div>
+<!--引入jquery文件-->
+<script src="__PUBLIC__/Admins/b/js/demo/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+    var res='';
+    $('.oldpwd').focus(function(){
+        var yz=$(this).attr('yz');
+        $(this).attr("placeholder",yz);
+        $(this).css('border','1px red solid')
+    })
+    $("input[name='oldpwd']").blur(function(){
+        // $(this).css('border','')
+        var input=$(this);
+        var val=$(this).val();
+        // alert(val);
+        $.get("__URL__/update",{val,val},function(data){
+            if(data==1){
+                input.css('border','1px green solid');
+                input.next().html('密码正确').css('color','green');
+                res=true;
+            }else{
+                input.css('border','1px red solid');
+                input.next().html('密码错误').css('color','red');
+                input.focus();
+                input.select();
+                res=false;
+            }
+        })
+    })
+
+
+
+    $("input[name='newpwd']").blur(function(){
+        pass=$(this).val();
+        // alert(pass)
+        //匹配正则
+        if(pass.match(/^\w{4,8}$/)==null){
+          $(this).next('span').css('color','red').html('密码格式不对');
+          res=false;
+        }else{
+          $(this).next('span').css("color",'green').html('密码可用');
+          $(this).css('border','1px green solid');
+          res=true;
+         }
+    })
+
+    $("input[name='repwd']").blur(function(){
+        repass=$(this).val();
+        // alert(pass)
+        //匹配正则
+        if(repass!=pass){
+          $(this).next('span').css('color','red').html('两次密码不一致');
+          res=false;
+        }else{
+          $(this).next('span').css("color",'green').html('密码一致可用');
+          $(this).css('border','1px green solid');
+          return true;
+        }
+    })
+
+    $("form").submit(function(){
+        if(res){
+            return true;
+        }else{
+            return false;
+        }
+    })
+
+
+</script>
+</block>

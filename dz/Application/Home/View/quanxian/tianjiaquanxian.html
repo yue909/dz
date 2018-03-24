@@ -1,0 +1,50 @@
+<extend name="Publice:index" />
+<block name="header">
+<div class="mws-panel grid_8">
+        <h2>后台管理权限添加</h2>
+        <div class="mws-panel-header">
+            <span><i class="icon-ok"></i> 添加权限</span>
+        </div>
+        <div class="mws-panel-body no-padding">
+            <form id="mws-validate" class="mws-form" action="__MODULE__/QuanXian/qxadd" method="post">
+                <div id="mws-validate-error" class="mws-form-message error" style="display:none;"></div>
+                <div class="mws-form-inline">
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">权限名称</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="name" class="required large">
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">控制器</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="controller" class="required large" value="">
+                        </div>
+                    </div>
+                     <div class="mws-form-row">
+                        <label class="mws-form-label">方法</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="remark" class="required large" value="">
+                        </div>
+                      </div>
+                       <div class="mws-form-row">
+                        <label class="mws-form-label">描述</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="miaoshu" class="required large" value="">
+                        </div>
+                      </div>
+                    <!-- <div class="mws-form-row">
+                        <label class="mws-form-label">用户头像</label>
+                        <div class="mws-form-item">
+                            <input type="file" name="picture" class="required" >
+                            <label for="picture" class="error" generated="true" style="display:none"></label>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="mws-button-row">
+                    <input type="submit" class="btn btn-success" value='提交添加'>
+                </div>
+            </form>
+        </div>      
+    </div>
+</block>

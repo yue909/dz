@@ -1,0 +1,78 @@
+<extend name="Publice:index" />
+<block name="header">
+	 <div class="mws-panel grid_8">
+        <h2>顶级代理</h2>
+        <div style="display: flex;">
+            <form name="fsoso" method="post" action="{:U('search')}" style="width:400px">
+                <input type="text" name="aci" class="dfinput" value="" style="width:200px" />
+                <input  type="submit" class="btn" value="查询" >
+            </form>
+            <form name="so" method="get" action="__MODULE__/YongHu/querysearch" style="width:400px" onsubmit="return check();">
+                <span>编号：</span>
+                <input type="text" name="id" class="dfinput so_id" value="" style="width:100px" />
+                <input  type="submit" class="btn" value="查看" >
+            </form>
+        </div>
+        <script type="text/javascript">
+            function check() {
+                var soID = $(".so_id").val();
+                $(".so_id").val(soID - 3150);
+                return true;
+            }
+        </script>
+        <br>
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i>用户列表</span>
+
+        </div>
+        <div class="mws-panel-body no-padding">
+            <table class="mws-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>用户名</th>
+                        <th>手机号</th>
+                        <th>收入</th>
+                        <th>佣金比例</th>
+                        <th>修改比例/添加比例</th>
+                        <th>查看</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <foreach name='list' item='row'>
+                    <tr>
+                        <td style=" text-align: center;">{$row['id']}</td>
+                        <td style=" text-align: center;">{$row['username']}</td>
+                        <td style=" text-align: center;">{$row['phone']}</td>
+
+                        <td style=" text-align: center;">{$row['yj']}</td>
+                        <if condition="$row['stair'] !== null">
+                            <td style=" text-align: center;">1级佣金比例{$row['stair']}%||2级佣金比例{$row['second_level']}%</td>
+                        <else/>
+                            <td style=" text-align: center;">公共佣金比例</td>
+                        </if>
+                        <if condition="$row['stair'] !== null">
+                            <td  style=" text-align: center;">
+                                 <a href="__URL__/usercommission/id/{$row['id']}" class="btn btn-warning">修改/添加</a>
+                                 <a href="__URL__/transition/id/{$row['id']}" class="btn btn-warning">切换公共佣金</a>
+                            </td>
+                        <else/>
+                            <td  style=" text-align: center;">
+                                 <a href="__URL__/usercommission/id/{$row['id']}" class="btn btn-warning">修改/添加</a>
+                            </td>
+                        </if>
+                        <td style=" text-align: center;"><a href="__MODULE__/YongHu/querysearch/id/{$row['id']}" class="btn btn-warning">查看</a></td>
+
+                    </tr>
+
+                   </foreach>
+
+                </tbody>
+                <tr><td colspan="8" align="center">{$fen}</td></tr>
+            </table>
+        </div>
+    </div>
+</block>
+
+
+

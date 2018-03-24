@@ -1,0 +1,45 @@
+<extend name="Publice:index" />
+<block name="header">
+    
+  <form id="mws-validate" class="mws-form" action="__URL__/uquanxianfenpei" method="post">
+    <div class="mws-form-row">
+        <label class="mws-form-label"><h4>为角色：<span style="color:red"> {$jiaose['name']}</span>分配权限</h4></label>
+        <div class="mws-form-item clearfix">
+            <foreach name = "class" item="class">
+                <span style="color: red; font-size:20px" class="spanName" >{$class['name']}</span>
+                <ul tag = "{$class['name']}" class="mws-form-list inline">
+                        <foreach name='quanxian' item='row'>
+                            <if condition="in_array($row['id'],$class['nid'])">
+                                <li><input type="checkbox" <if condition="in_array($row['id'],$quanxianguanli)">checked</if> name='nid[]' value="{$row['id']}" > <label>{$row['name']}</label></li>
+                            </if>
+                        </foreach>
+                </ul>
+            </foreach>
+        </div>
+    </div>
+    <input type="hidden" name='rid' value="{$jiaose['id']}">
+    <div class="mws-button-row">
+        <input type="submit" class="btn btn-success" value='执行添加'>
+    </div>
+<form>
+<script type="text/javascript">
+    window.onload = function () {
+        var flag = true;
+        $(".spanName").each(function (index,value) {
+            $(value).click(function () {
+                var name = $(value).html();
+                var dom = $("[tag="+name+"]")
+                var input = dom.find('input')
+                input.each(function (i,v) {
+                    var currentC = $(v).prop('checked')
+                    if (currentC==undefined || currentC == '' || currentC == null) {
+                        $(v).prop('checked',true)
+                    }else{
+                        $(v).prop('checked',false)
+                    }
+                })
+            })
+        })
+    }
+</script>
+</block>

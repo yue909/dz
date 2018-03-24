@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<title>爱阅赚</title>
+	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "https://hm.baidu.com/hm.js?d2e6a5eb9b73de9902833a62f9c1c64a";
+		  var s = document.getElementsByTagName("script")[0];
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+	<script src="https://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/layer/3.1.0/mobile/layer.js"></script>
+	<link href="https://cdn.bootcss.com/layer/3.1.0/mobile/need/layer.css" rel="stylesheet">
+	<link href="https://cdn.bootcss.com/layer/3.1.0/theme/default/layer.css" rel="stylesheet">
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.con{
+		  width: 100vw;
+		  height: 100vh;
+		  background: url("https://new-weizhuan.oss-cn-shenzhen.aliyuncs.com/common/img/homes/Downloadbg.png") no-repeat left top;
+		  background-size: cover;
+		  display: flex;
+		  flex-direction: column;
+		  justify-content: center;
+		  align-items: center;
+		}
+		.androidBtn{
+		  width: 207px;
+		  height: 42px;
+		  margin-bottom: 20px;
+		  transform: translateY(30px);
+		}
+		.androidBtn img{
+		   width: 100%;
+		 }
+		.iphoneBtn{
+		  width: 207px;
+		  height: 42px;
+		  transform: translateY(30px);
+		}
+		.iphoneBtn img{
+		   width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div class="con">
+	  <div class="androidBtn" onclick="androidDownload()">
+	    <img src="https://new-weizhuan.oss-cn-shenzhen.aliyuncs.com/common/img/homes/android.png">
+	  </div>
+	  <div class="iphoneBtn" onclick="iphoneDownload()">
+	    <img src="https://new-weizhuan.oss-cn-shenzhen.aliyuncs.com/common/img/homes/iphoneBtn.png">
+	  </div>
+	</div>
+	<script type="text/javascript">
+		function androidDownload() {
+			window.location.href = "https://a.app.qq.com/o/simple.jsp?pkgname=cn.dbili.dbili"
+		}
+		function iphoneDownload() {
+			layer.open({
+				content:'开发中...',
+				btn:'我知道了'
+			})
+		}
+	</script>
+</body>
+</html>

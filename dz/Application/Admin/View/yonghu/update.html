@@ -1,0 +1,162 @@
+<extend name="Publice:index" />
+<block name="header">
+	  <div class="mws-panel grid_8">
+        <h2>用户信息修改</h2>
+        <div class="mws-panel-header">
+            <span><i class="icon-ok"></i>用户信息修改</span>
+        </div>
+        <div class="mws-panel-body no-padding">
+            <form id="mws-validate" class="mws-form" action="__URL__/update" method="post">
+                <div id="mws-validate-error" class="mws-form-message error" style="display:none;"></div>
+                <div class="mws-form-inline">
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">用户名</label>
+                        <div class="mws-form-item">
+                            <input type="hidden" name='id' value="{$res['id']}">
+                            <input type="text" name="username" class="required large" value="{$res['username']}">
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">phone</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="password" value="{$res['password']}" class="required digits large">
+                        </div>
+                    </div>
+
+
+                
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">确认</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="phone" value="{$res['phone']}" class="required digits large">
+                        </div>
+                    </div>
+
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">用户邮箱</label>
+                        <div class="mws-form-item">
+                            <input type="email" name="email" class="required url large" value="{$res['email']}">
+                        </div>
+                    </div>
+
+                      <div class="mws-form-row">
+                        <label class="mws-form-label">状态</label>
+                        <div class="mws-form-item ">
+                                <select name="status">
+                                     <if condition="$res['status'] == 1">
+                                            <option value="1" selected="selected">
+                                                有
+                                            </option>
+                                            <option value="0" >
+                                                无
+                                            </option>
+                                        <else/>
+                                            <option value="0" selected="selected">
+                                                无
+                                            </option>
+                                            <option value="1" >
+                                                有
+                                            </option>
+                                        </if>
+                                    
+                                </select>                               
+                        </div>
+                    </div>
+
+
+                     <div class="mws-form-row">
+                        <label class="mws-form-label">权限</label>
+                        <div class="mws-form-item ">
+                                <select name="admin">
+                                     <if condition="$res['admin'] == 1">
+                                            <option value="1" selected="selected">
+                                                无
+                                            </option>
+                                            <option value="2" >
+                                               有
+                                            </option>
+                                        <else/>
+                                            <option value="2" selected="selected">
+                                               有
+                                            </option>
+                                            <option value="1" >
+                                                无
+                                            </option>
+                                        </if>
+                                    
+                                </select>                               
+                        </div>
+                    </div>
+
+                     <div class="mws-form-row">
+                        <label class="mws-form-label">代理等级</label>
+                        <div class="mws-form-item ">
+                                <select name="daili">
+                                     <if condition="$res['daili'] == 1">
+                                            <option value="1" selected="selected">
+                                               一级代理
+                                            </option>
+                                    </if>
+                                    
+                                </select>                               
+                        </div>
+                    </div>
+
+                     <div class="mws-form-row">
+                        <label class="mws-form-label">结算</label>
+                        <div class="mws-form-item ">
+                                <select name="jiesuan">
+                                     <if condition="$res['jiesuan'] == 0">
+                                            <option value="1" selected="selected">
+                                                是
+                                            </option>
+                                            <option value="1" >
+                                               否
+                                            </option>
+                                        <else/>
+                                            <option value="1" selected="selected">
+                                                否
+                                            </option>
+                                            <option value="0" >
+                                               是
+                                            </option>
+                                        </if>
+                                    
+                                </select>                               
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">分成比列</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="scole" class="required url large" value="{$res['scole']}">
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">正在推广的广告</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="guanggao" class="required url large" value="{$res['guanggao']}">
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">收入</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="shouru" class="required url large" value="{$res['shouru']}">
+                        </div>
+                    </div>
+                    
+                   
+            
+                </div>
+                <div class="mws-button-row">
+                    <input type="submit" class="btn btn-success" value='执行修改'>
+                </div>
+            </form>
+        </div>      
+    </div>
+</block>

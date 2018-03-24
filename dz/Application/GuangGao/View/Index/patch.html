@@ -1,0 +1,477 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>广告申请</title>
+    <link rel="stylesheet" href="__PUBLIC__/Admins/css/common.css?t=1"/>
+    <link rel="stylesheet" href="__PUBLIC__/Admins/css/ade-common.28842187.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Admins/css/patch.5efe4c33.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admins/css/advertisers.css" />
+    <script type="text/javascript" src="__PUBLIC__/Admins/js/laydate/laydate.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admins/js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<style type="text/css">
+    .tuiguang img{
+        background: url(https://new-weizhuan.oss-cn-shenzhen.aliyuncs.com/ueditor/1516539541149995.png) no-repeat 0 0;
+        background-size: 50%;
+        background-position: center;
+    }
+    .shouquan img{
+        background: url(https://new-weizhuan.oss-cn-shenzhen.aliyuncs.com/ueditor/1516539541149995.png) no-repeat 0 0;
+        background-size: 50%;
+        background-position: center;
+    }
+
+</style>
+<form action="__MODULE__/Index/advertorial" method="post" enctype="multipart/form-data">
+<!--头部-->
+<div class="header-wrap">
+    <div id="ade-header">
+        <a href="__MODULE__/Index/index">
+        <div class="left">
+            <span class="logopic">
+                <img src="__PUBLIC__/Admins/images/logo.png">
+            </span>
+            <span style="color: #333;">爱阅赚</span></div></a>
+        <div class="right">
+            <span class="avtor">
+                <img src="{$_SESSION['GuangGao']['avatar']}">
+            </span>
+            <div>
+                <div>{$_SESSION['GuangGao']['name']}</div>
+                <div class="guanggaozhu">广告主</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="patch-main">
+    <div class="patch-banner">
+        <div class="patch-apply-title">广告推广申请</div>
+    </div>
+    <div class="patch-from" style="height: 900px;">
+        <div class="patch-promote-detail">
+            <div class="patch-promote-title"><span class="patch-title-style"></span>推广详情</div>
+            <div class="patch-promote-mes">
+                <div class="patch-promote-line">
+                    <span class="patch-promote-line-title">推广名称：</span>
+                    <input class="patch-promote-name" maxlength="20" type="text" name="title" />
+                    <span class="patch-margin-left patch-promote-tip patch-detail-hide">最多20字</span>
+                </div>
+                <div class="patch-margin-left">
+                    <div class="patch-promote-imp-up">
+                    <span>上传推广图片</span>
+                    <span class="patch-promote-tip"></span>
+                    </div>
+                    <div class="patch-promote-authorization-content" style="width: auto;">
+                        <div class="patch-promote-content-border patch-promote-authorization-border tuiguang" style="float: left;">
+                            <img id="tuiguang1" style="width: 100px;height: 80px" >
+
+                            <input class="patch-content-img tuiguang1" id="patch-content-img-authorization" name="tuiguang[]" style="display: block; z-index: 1;" type="file">
+                        </div>
+                        <div class="patch-promote-content-border patch-promote-authorization-border tuiguang" style="float: left;">
+                            <img id="tuiguang2" style="width: 100px;height: 80px" >
+
+                            <input class="patch-content-img tuiguang2" id="patch-content-img-authorization" name="tuiguang[]" style="display: block; z-index: 1;" type="file">
+                        </div>
+                        <div class="patch-promote-content-border patch-promote-authorization-border tuiguang" style="float: left;">
+                            <img id="tuiguang3" style="width: 100px;height: 80px" >
+
+                            <input class="patch-content-img tuiguang3" id="patch-content-img-authorization" name="tuiguang[]" style="display: block; z-index: 1;" type="file">
+                        </div>
+                        <div class="patch-promote-content-border patch-promote-authorization-border tuiguang" style="float: left;">
+                            <img id="tuiguang4" style="width: 100px;height: 80px" >
+
+                            <input class="patch-content-img tuiguang4" id="patch-content-img-authorization" name="tuiguang[]" style="display: block; z-index: 1;" type="file">
+                        </div>
+                        <div class="patch-promote-content-border patch-promote-authorization-border tuiguang" style="float: left;">
+                            <img id="tuiguang5" style="width: 100px;height: 80px" >
+
+                            <input class="patch-content-img tuiguang5" id="patch-content-img-authorization" name="tuiguang[]" style="display: block; z-index: 1;" type="file">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="patch-margin-left">
+                    <div class="patch-promote-imp-up">
+                    <span>上传授权资质证明</span>
+                    <span class="patch-promote-tip">（素材涉及品牌授权或特殊行业资质）</span>
+                    </div>
+                    <div class="patch-promote-authorization-content" style="width: auto">
+                        <div class="patch-promote-content-border patch-promote-authorization-border shouquan" style="float: left;">
+                            <img id="shouquan1" style="width: 100px;height: 80px">
+
+                            <input class="patch-content-img shouquan1" id="patch-content-img-authorization" name="shouquan[]" style="display: block; z-index: 1;" type="file">
+                        </div>
+                        <div class="patch-promote-content-border patch-promote-authorization-border shouquan" style="float: left;">
+                            <img id="shouquan2" style="width: 100px;height: 80px">
+
+                            <input class="patch-content-img shouquan2" id="patch-content-img-authorization" name="shouquan[]" style="display: block; z-index: 1;" type="file">
+                        </div>
+                        <div class="patch-promote-content-border patch-promote-authorization-border shouquan" style="float: left;">
+                            <img id="shouquan3" style="width: 100px;height: 80px">
+
+                            <input class="patch-content-img shouquan3" id="patch-content-img-authorization" name="shouquan[]" style="display: block; z-index: 1;" type="file">
+                        </div>
+                        <div class="patch-promote-content-border patch-promote-authorization-border shouquan" style="float: left;">
+                            <img id="shouquan4" style="width: 100px;height: 80px">
+
+                            <input class="patch-content-img shouquan4" id="patch-content-img-authorization" name="shouquan[]" style="display: block; z-index: 1;" type="file">
+                        </div>
+                        <div class="patch-promote-content-border patch-promote-authorization-border shouquan" style="float: left;">
+                            <img id="shouquan5" style="width: 100px;height: 80px">
+
+                            <input class="patch-content-img shouquan5" id="patch-content-img-authorization" name="shouquan[]" style="display: block; z-index: 1;" type="file">
+                        </div>
+                        <div class="patch-promote-content-exist patch-promote-content-exist-authorization">
+                            <div class="patch-promote-content-exist-img patch-promote-content-exist-img-authorization"></div>
+                            <i class="patch-img patch-promote-img-delete" data-num="authorization"></i>
+                            <div class="patch-img-box">
+                                <div class="patch-img-box-hover patch-img-box-hover-authorization"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="patch-promote-title"><span class="patch-title-style"></span>推广预算</div>
+                <div class="patch-promote-mes">
+                    <div class="patch-promote-line patch-promote-line-div">
+                        <div>
+                            <span class="patch-promote-line-title">推广预算：</span>
+                            <input class="patch-promote-money patch-detail-hide" id="tuiguangyusuanID" type="text" name="bprice" maxlength="10"/>
+                            <span class="patch-open-money patch-detail-show"></span>
+                            <span class="">元</span>
+                        </div>
+                        <div class="patch-promote-tip patch-promote-tip-show patch-promote-tip-min patch-margin-left patch-detail-hide">500元起投</div>
+
+
+                        </div>
+
+                    </div>
+                    <div class="patch-promote-line patch-promote-line-div">
+                        <div>
+                            <span class="patch-promote-line-title">推广单价：</span>
+                            <input class="patch-promote-money patch-detail-hide" name="price" type="text" maxlength="10"/>
+                            <span class="patch-open-money patch-detail-show"></span>
+                            <span class="">元</span>
+                        </div>
+                        <div class="patch-promote-tip patch-promote-tip-show patch-promote-tip-min patch-margin-left patch-detail-hide">0.01元起投</div>
+
+
+                        </div>
+                        <div class="patch-promote-line patch-promote-line-div">
+                        <div>
+                            <span class="patch-promote-line-title">推广模式：</span>
+                                <select name="tgms">
+                                    <option value="1">
+                                        CPC(点击付费)
+                                    </option>
+                                    <option value="0">
+                                        CPV(展示付费)
+                                    </option>
+                                </select>
+                            <span class="patch-open-money patch-detail-show"></span>
+                        </div>
+                        <div class="patch-promote-tip patch-promote-tip-show patch-promote-tip-min patch-margin-left patch-detail-hide"></div>
+                        </div>
+                        <div class="patch-promote-line patch-promote-line-div">
+                        <div>
+                            <span class="patch-promote-line-title">推广地址：</span>
+                            <input class="patch-promote-money patch-detail-hide" name="url" type="text"/>
+                            <span class="patch-open-money patch-detail-show"></span>
+                        </div>
+
+                        <div class="patch-promote-tip patch-promote-tip-show patch-promote-tip-min patch-margin-left patch-detail-hide"></div>
+                        </div>
+                        <div class="patch-promote-line patch-promote-line-div">
+                        <div style="width: 100%;height: 90px;">
+                            <span class="patch-promote-line-title" style="height: 90px;line-height: 90px;">推广描述：</span>
+                            <textarea cols="80" rows="3" name="miaoshu" maxlength="500" style="float: left;height: 90px;box-sizing: border-box;"></textarea>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+
+                </div>
+            </div>
+        <div class="patch-total" style="background: #f6f6f6;margin-top: 0;height:120px;display: flex;align-items: center;justify-content: space-around;">
+            <div>
+                <span class="patch-total-text">支付金额：</span>
+                <span class="patch-total-money">0</span>
+            </div>
+            <input class="patch-promote-btn patch-detail-hide patch-promote-apply-btn" type="submit" value="提交申请">
+            <div class="patch-promote-help patch-detail-show">
+                <span>如有疑问请联系</span>
+                <span class="patch-detail-open-tel">广告客服</span>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+<div class="user-ade">
+    <div class="main-content-remind">
+        <div class="main-remind-top-head"><p><i class="patch-img editor-pic"></i>提示</p><div class="editor-pic remind-quit"></div></div>
+        <div class="main-remind-body">
+            <div class="main-content-remind-header">您想要投放贴片广告</div>
+            <div class="main-content-remind-info">需要先注册成为广告主之后，方可投放贴片广告</div>
+        </div>
+        <div class="main-remind-footer clear">
+            <div class="main-publish-remind-cover">取消</div><div class="main-publish-remind-action">前往注册</div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+<script src="__PUBLIC__/Admins/js/jquery.js"></script>
+<script type="text/javascript">
+    $("#tuiguangyusuanID").keyup(function () {
+        $(".patch-total-money").html($(this).val())
+    })
+    function picPreview(className) {
+        $("." + className).change(function () {
+            var $file = $(this);
+            var fileObj = $file[0];
+            var windowURL = window.URL || window.webkitURL;
+            var dataURL;
+            var $img = $("#" + className);
+
+            if (fileObj && fileObj.files && fileObj.files[0]) {
+                dataURL = windowURL.createObjectURL(fileObj.files[0]);
+                $img.attr('src', dataURL);
+            } else {
+                dataURL = $file.val();
+                var imgObj = document.getElementById("preview");
+                imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+                imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+
+            }
+        });
+    }
+    $(function () {
+        if ($(".avtor").find("img").attr("src") == '') {
+            $(".avtor").find("img")
+            .attr("src", "https://new-weizhuan.oss-cn-shenzhen.aliyuncs.com/common/avatar.jpeg");
+        }
+        picPreview("tuiguang1")
+        picPreview("shouquan1")
+        picPreview("tuiguang2")
+        picPreview("shouquan2")
+        picPreview("tuiguang3")
+        picPreview("shouquan3")
+        picPreview("tuiguang4")
+        picPreview("shouquan4")
+        picPreview("tuiguang5")
+        picPreview("shouquan5")
+    });
+// $(function () {
+//     $(".shouquan1").change(function () {
+//         var $file = $(this);
+//         var fileObj = $file[0];
+//         var windowURL = window.URL || window.webkitURL;
+//         var dataURL;
+//         var $img = $("#shouquan1");
+
+//         if (fileObj && fileObj.files && fileObj.files[0]) {
+//             dataURL = windowURL.createObjectURL(fileObj.files[0]);
+//             $img.attr('src', dataURL);
+//         } else {
+//             dataURL = $file.val();
+//             var imgObj = document.getElementById("preview");
+//             // 两个坑:
+//             // 1、在设置filter属性时，元素必须已经存在在DOM树中，动态创建的Node，也需要在设置属性前加入到DOM中，先设置属性在加入，无效；
+//             // 2、src属性需要像下面的方式添加，上面的两种方式添加，无效；
+//             imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+//             imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+
+//         }
+//     });
+// });
+// $(function () {
+//     $(".tuiguang2").change(function () {
+//         var $file = $(this);
+//         var fileObj = $file[0];
+//         var windowURL = window.URL || window.webkitURL;
+//         var dataURL;
+//         var $img = $("#tuiguang2");
+
+//         if (fileObj && fileObj.files && fileObj.files[0]) {
+//             dataURL = windowURL.createObjectURL(fileObj.files[0]);
+//             $img.attr('src', dataURL);
+//         } else {
+//             dataURL = $file.val();
+//             var imgObj = document.getElementById("preview");
+//             // 两个坑:
+//             // 1、在设置filter属性时，元素必须已经存在在DOM树中，动态创建的Node，也需要在设置属性前加入到DOM中，先设置属性在加入，无效；
+//             // 2、src属性需要像下面的方式添加，上面的两种方式添加，无效；
+//             imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+//             imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+
+//         }
+//     });
+// });
+// $(function () {
+//     $(".shouquan2").change(function () {
+//         var $file = $(this);
+//         var fileObj = $file[0];
+//         var windowURL = window.URL || window.webkitURL;
+//         var dataURL;
+//         var $img = $("#shouquan2");
+
+//         if (fileObj && fileObj.files && fileObj.files[0]) {
+//             dataURL = windowURL.createObjectURL(fileObj.files[0]);
+//             $img.attr('src', dataURL);
+//         } else {
+//             dataURL = $file.val();
+//             var imgObj = document.getElementById("preview");
+//             // 两个坑:
+//             // 1、在设置filter属性时，元素必须已经存在在DOM树中，动态创建的Node，也需要在设置属性前加入到DOM中，先设置属性在加入，无效；
+//             // 2、src属性需要像下面的方式添加，上面的两种方式添加，无效；
+//             imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+//             imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+
+//         }
+//     });
+// });
+// $(function () {
+//     $(".tuiguang3").change(function () {
+//         var $file = $(this);
+//         var fileObj = $file[0];
+//         var windowURL = window.URL || window.webkitURL;
+//         var dataURL;
+//         var $img = $("#tuiguang3");
+
+//         if (fileObj && fileObj.files && fileObj.files[0]) {
+//             dataURL = windowURL.createObjectURL(fileObj.files[0]);
+//             $img.attr('src', dataURL);
+//         } else {
+//             dataURL = $file.val();
+//             var imgObj = document.getElementById("preview");
+//             // 两个坑:
+//             // 1、在设置filter属性时，元素必须已经存在在DOM树中，动态创建的Node，也需要在设置属性前加入到DOM中，先设置属性在加入，无效；
+//             // 2、src属性需要像下面的方式添加，上面的两种方式添加，无效；
+//             imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+//             imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+
+//         }
+//     });
+// });
+// $(function () {
+//     $(".shouquan3").change(function () {
+//         var $file = $(this);
+//         var fileObj = $file[0];
+//         var windowURL = window.URL || window.webkitURL;
+//         var dataURL;
+//         var $img = $("#shouquan3");
+
+//         if (fileObj && fileObj.files && fileObj.files[0]) {
+//             dataURL = windowURL.createObjectURL(fileObj.files[0]);
+//             $img.attr('src', dataURL);
+//         } else {
+//             dataURL = $file.val();
+//             var imgObj = document.getElementById("preview");
+//             // 两个坑:
+//             // 1、在设置filter属性时，元素必须已经存在在DOM树中，动态创建的Node，也需要在设置属性前加入到DOM中，先设置属性在加入，无效；
+//             // 2、src属性需要像下面的方式添加，上面的两种方式添加，无效；
+//             imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+//             imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+
+//         }
+//     });
+// });
+// $(function () {
+//     $(".tuiguang4").change(function () {
+//         var $file = $(this);
+//         var fileObj = $file[0];
+//         var windowURL = window.URL || window.webkitURL;
+//         var dataURL;
+//         var $img = $("#tuiguang4");
+
+//         if (fileObj && fileObj.files && fileObj.files[0]) {
+//             dataURL = windowURL.createObjectURL(fileObj.files[0]);
+//             $img.attr('src', dataURL);
+//         } else {
+//             dataURL = $file.val();
+//             var imgObj = document.getElementById("preview");
+//             // 两个坑:
+//             // 1、在设置filter属性时，元素必须已经存在在DOM树中，动态创建的Node，也需要在设置属性前加入到DOM中，先设置属性在加入，无效；
+//             // 2、src属性需要像下面的方式添加，上面的两种方式添加，无效；
+//             imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+//             imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+
+//         }
+//     });
+// });
+// $(function () {
+//     $(".shouquan4").change(function () {
+//         var $file = $(this);
+//         var fileObj = $file[0];
+//         var windowURL = window.URL || window.webkitURL;
+//         var dataURL;
+//         var $img = $("#shouquan4");
+
+//         if (fileObj && fileObj.files && fileObj.files[0]) {
+//             dataURL = windowURL.createObjectURL(fileObj.files[0]);
+//             $img.attr('src', dataURL);
+//         } else {
+//             dataURL = $file.val();
+//             var imgObj = document.getElementById("preview");
+//             // 两个坑:
+//             // 1、在设置filter属性时，元素必须已经存在在DOM树中，动态创建的Node，也需要在设置属性前加入到DOM中，先设置属性在加入，无效；
+//             // 2、src属性需要像下面的方式添加，上面的两种方式添加，无效；
+//             imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+//             imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+
+//         }
+//     });
+// });
+// $(function () {
+//     $(".tuiguang5").change(function () {
+//         var $file = $(this);
+//         var fileObj = $file[0];
+//         var windowURL = window.URL || window.webkitURL;
+//         var dataURL;
+//         var $img = $("#tuiguang5");
+
+//         if (fileObj && fileObj.files && fileObj.files[0]) {
+//             dataURL = windowURL.createObjectURL(fileObj.files[0]);
+//             $img.attr('src', dataURL);
+//         } else {
+//             dataURL = $file.val();
+//             var imgObj = document.getElementById("preview");
+//             // 两个坑:
+//             // 1、在设置filter属性时，元素必须已经存在在DOM树中，动态创建的Node，也需要在设置属性前加入到DOM中，先设置属性在加入，无效；
+//             // 2、src属性需要像下面的方式添加，上面的两种方式添加，无效；
+//             imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+//             imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+
+//         }
+//     });
+// });
+// $(function () {
+//     $(".shouquan5").change(function () {
+//         var $file = $(this);
+//         var fileObj = $file[0];
+//         var windowURL = window.URL || window.webkitURL;
+//         var dataURL;
+//         var $img = $("#shouquan5");
+
+//         if (fileObj && fileObj.files && fileObj.files[0]) {
+//             dataURL = windowURL.createObjectURL(fileObj.files[0]);
+//             $img.attr('src', dataURL);
+//         } else {
+//             dataURL = $file.val();
+//             var imgObj = document.getElementById("preview");
+//             // 两个坑:
+//             // 1、在设置filter属性时，元素必须已经存在在DOM树中，动态创建的Node，也需要在设置属性前加入到DOM中，先设置属性在加入，无效；
+//             // 2、src属性需要像下面的方式添加，上面的两种方式添加，无效；
+//             imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+//             imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+
+//         }
+//     });
+// });
+</script>
+
+

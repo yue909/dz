@@ -1,0 +1,78 @@
+<extend name="Publice:index" />
+<block name="header">
+   <div class="mws-panel grid_8">
+       <h2>广告主列表展示</h2>
+        <div class="search_form_2018">
+            <form name="fsoso" method="post" action="{:U('search')}" style="width:550px">
+                <input type="text" name="cci" class="dfinput" value="{$cci}" style="width:200px" />
+                <input  type="submit" class="btn" value="搜索" >
+            </form>
+        </div>
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i> 广告主列表</span>
+        </div>
+        <div class="mws-panel-body no-padding">
+            <table class="mws-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>企业账号</th>
+                        <th>邮箱</th>
+                        <th>电话</th>
+                        <th>姓名</th>
+                        <th>微信昵称</th>
+                        <th>微信头像</th>
+                        <th>状态</th>
+                        <th>添加时间</th>
+                        <th>最后登陆时间</th>
+                        <th>最后登陆IP</th>
+                        <th>累计收入</th>
+                        <th>余额</th>
+                        <th>消费累计</th>
+                        <th>企业名称</th>
+                        <th>Openid</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <foreach name='list' item='row'>
+                        <tr>
+                            <td style=" text-align: center;">{$row['id']}</td>
+                            <td style=" text-align: center;">{$row['account']}</td>
+                            <td style=" text-align: center;">{$row['email']}</td>
+                            <td style=" text-align: center;">{$row['phone']}</td>
+                            <td style=" text-align: center;">{$row['name']}</td>
+                            <td style=" text-align: center;">{$row['nickname']}</td>
+                            <td style=" text-align: center;"><img width="80px" src="{$row['avatar']}"></td>
+                            <td style=" text-align: center;">
+                                <if condition="$row['status'] == 0">下线</if>
+                                <if condition="$row['status'] == 1">上线</if>
+                            </td>
+                            <td style=" text-align: center;">{$row['create_time' | date="Y-m-d H:i:s",###]}</td>
+                            <td style=" text-align: center;">{$row['last_time' | date="Y-m-d H:i:s",###]}</td>
+                            <td style=" text-align: center;">{$row['last_ip']}</td>
+                            <td style=" text-align: center;">{$row['money']}</td>
+                            <td style=" text-align: center;">{$row['balances']}</td>
+                            <td style=" text-align: center;">{$row['consumption']}</td>
+                            <td style=" text-align: center;">{$row['Companyname']}</td>
+                            <td style=" text-align: center;">{$row['openid']}</td>
+
+                            <td style=" text-align: center;">
+                                <a href="__URL__/dodelete/id/{$row['id']}" class="btn btn-danger">删除</a>
+                                <a href="__URL__/Check/id/{$row['id']}" class="btn btn-warning">查看</a><br>
+                                <a href="__URL__/RRapid/id/{$row['id']}" class="btn btn-warning">
+                                   <if condition="$row['status'] == 0">上线</if>
+                                   <if condition="$row['status'] == 1">下线</if>
+                                </a>
+                            </td>
+                        </tr>
+                   </foreach>
+                </tbody>
+
+                <tr>
+                    <td colspan="16" align="center">{$fen}</td>
+               </tr>
+            </table>
+        </div>
+    </div>
+</block>

@@ -1,0 +1,104 @@
+<extend name="Publice:index" />
+<block name="header">
+	 <div class="mws-panel grid_8">
+        <h2>微信顶级菜单修改</h2>
+        <div class="mws-panel-header">
+            <span><i class="icon-ok"></i> 修改顶级菜单</span>
+        </div>
+        <div class="mws-panel-body no-padding">
+            <form id="mws-validate" class="mws-form" action="__URL__/tocaidanedit" method="post">
+                <div id="mws-validate-error" class="mws-form-message error" style="display:none;"></div>
+                <div class="mws-form-inline">
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">菜单名</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="name" class="required large" value="{$Wechat['name']}">
+                        </div>
+                    </div>          
+                </div>
+                <div class="mws-form-inline">
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">菜单响应动作类型</label>
+                        <div class="mws-form-item">
+                            <select name="type" class="type" id="selectBox" onchange="selectitem()">
+                                <if condition="$Wechat['type'] == 'view'">
+                                    <option value="view" selected="selected">view(网页类型)</option>
+                                    <option value="click">click(点击类型)</option>
+                                    <option value="miniprogram">miniprogram(小程序类型)</option>
+                                <else/>
+                                    <if condition="$Wechat['type'] == 'click'">
+                                        <option value="view" >view(网页类型)</option>
+                                        <option value="click" selected="selected">click(点击类型)</option>
+                                        <option value="miniprogram">miniprogram(小程序类型)</option>
+                                    <else/>
+                                         <option value="view" >view(网页类型)</option>
+                                        <option value="click">click(点击类型)</option>
+                                        <option value="miniprogram" selected="selected">miniprogram(小程序类型)</option>
+                                    </if>
+                                </if>
+                            </select>
+                        </div>
+                    </div>          
+                </div>
+                <div class="mws-form-inline">
+                    <div class="mws-form-row key" style="display: none" >
+                        <label class="mws-form-label">菜单KEY值(click等点击类型必须)</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="key" class="required large" value="{$Wechat['key']}">
+                        </div>
+                    </div>          
+                </div>
+                <div class="mws-form-inline">
+                    <div class="mws-form-row url" style="display: none">
+                        <label class="mws-form-label">网页链接(view、miniprogram类型必须)</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="url" class="required large" value="{$Wechat['url']}">
+                        </div>
+                    </div>          
+                </div>
+                <div class="mws-form-inline">
+                    <div class="mws-form-row appid" style="display: none">
+                        <label class="mws-form-label">小程序appid(miniprogram类型必须)</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="appid" class="required large" value="{$Wechat['appid']}">
+                        </div>
+                    </div>          
+                </div>
+                <div class="mws-form-inline">
+                    <div class="mws-form-row pagepath" style="display: none">
+                        <label class="mws-form-label">小程序页面路径(miniprogram类型必须)</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="pagepath" class="required large" value="{$Wechat['pagepath']}">
+                        </div>
+                    </div>          
+                </div>
+                <input type="hidden" name="id" value="{$Wechat['id']}">
+                <div class="mws-button-row">
+                    <input type="submit" class="btn btn-success" value='提交修改'>
+                </div>
+            </form>
+        </div>      
+    </div>
+    <script type="text/javascript">
+        function selectitem() {
+          var value =  $('#selectBox').val();
+          if (value == 'view') {
+            $('.url').css('display','block')
+            $('.key').css('display','none')
+            $('.appid').css('display','none')
+            $('.pagepath').css('display','none')
+          }else if(value == 'click'){
+            $('.url').css('display','none')
+            $('.key').css('display','block')
+            $('.appid').css('display','none')
+            $('.pagepath').css('display','none')
+          }else if(value == 'miniprogram'){
+            $('.url').css('display','block')
+            $('.key').css('display','none')
+            $('.appid').css('display','block')
+            $('.pagepath').css('display','block')
+          }
+        }
+        selectitem();
+    </script>
+</block>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{$announce["title"]}</title>
+</head>
+<body>
+	<div style="position: absolute;left: 10%;width: 80%;">
+		<center>
+			<p>{$announce["title"]}</p>
+			<br>
+			<div style="width: 100%;">
+				{$announce["content"]}
+			</div>
+			<br>
+			<div style="position: absolute;right: 2%;">
+				{$announce["update_time"]|date="Y-m-d H:i:s",###}
+			</div>
+			<br>
+			<div style="position: absolute;right: 2%;">
+				{$announce["author"]}
+			</div>
+		</center>
+	</div>
+</body>
+</html>

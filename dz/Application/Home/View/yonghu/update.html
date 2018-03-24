@@ -1,0 +1,70 @@
+<extend name="Publice:index" />
+<block name="header">
+	  <div class="mws-panel grid_8">
+        <h2>用户信息修改</h2>
+        <div class="mws-panel-header">
+            <span><i class="icon-ok"></i>用户信息修改</span>
+        </div>
+        <div class="mws-panel-body no-padding">
+            <form id="mws-validate" class="mws-form" action="__URL__/update" method="post">
+                <div id="mws-validate-error" class="mws-form-message error" style="display:none;"></div>
+                <div class="mws-form-inline">
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">用户名</label>
+                        <div class="mws-form-item">
+                            <input type="hidden" name='id' value="{$res['id']}">
+                            <input type="text" name="username" class="required large" value="{$res['username']}">
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">用户密码</label>
+                        <div class="mws-form-item">
+                            <input type="password" name="pwd" class="required email large" value="{$res['password']}">
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">确认密码</label>
+                        <div class="mws-form-item">
+                            <input type="password" name="repwd" class="required url large" value="{$res['password']}"> 
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">phone</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="phone" value="{$res['phone']}" class="required digits large">
+                        </div>
+                    </div>
+
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">用户邮箱</label>
+                        <div class="mws-form-item">
+                            <input type="email" name="email" class="required url large" value="{$res['email']}">
+                        </div>
+                    </div>
+
+                      <div class="mws-form-row">
+                        <label class="mws-form-label">状态</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="status" class="required url large" value="{$res['status']}">
+                        </div>
+                    </div>
+
+                      <div class="mws-form-row">
+                        <label class="mws-form-label">权限</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="admin" class="required url large" value="{$res['admin']}">
+                        </div>
+                    </div>
+                    
+                   
+            
+                </div>
+                <div class="mws-button-row">
+                    <input type="submit" class="btn btn-success" value='执行修改'>
+                </div>
+            </form>
+        </div>      
+    </div>
+</block>

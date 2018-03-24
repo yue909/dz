@@ -1,0 +1,57 @@
+<extend name="Publice:index" />
+<block name="header">
+<div class="page_title">
+ <h2 class="fl">公告列表</h2>
+ <a href="__MODULE__/Announce/add" class="fr top_rt_btn add_icon">发布公告</a>
+</div>
+<table class="table">
+ <tr>
+  <th width="3%;">Id</th>
+  <th width="55%;">标题</th>
+  <th width="7%;">发布者</th>
+  <th width="5%;">状态</th>
+  <th>更新时间</th>
+  <th>操作</th>
+ </tr>
+
+ <foreach name="list" item="vo">
+   <tr>
+    <td>{$vo.id}</td>
+    <td><p><a href="__MODULE__/Announce/preview?id={$vo.id}" target="_blank">{$vo.title}</a></p></td>
+    <td><p>{$vo.author}</p></td>
+    <td>
+      <p>
+      <if condition="$vo.status == '0'">
+        <span style="color: #19a97b;">显示</span>
+      <else/>
+          <span style="color: #e03646;">隐藏</span>
+        </if>
+      </p>
+    </td>
+    <td>{$vo.update_time|date="Y-m-d H:i:s",###}</td>
+    <td>
+     <a href="__MODULE__/Announce/edit?id={$vo.id}" title="编辑" class="link_icon">&#101;</a>
+     <a href="#" title="删除" class="link_icon" onclick="Delete({$vo.id})">&#100;</a>
+    </td>
+   </tr>
+ </foreach>
+</table>
+<aside class="paging">
+{$page}
+</aside>
+<script type="text/javascript">
+  function Delete(id) {
+    //alert('删除成功！');
+    var result = confirm("id:" + id + " 是否删除？");
+    if (result) {
+      $.post('__MODULE__/Announce/delete?id=' + id, '', function(rData){
+        if (rData.code == 1) {
+          window.location.reload();
+        }
+      });
+    }
+
+  }
+</script>
+
+</block>

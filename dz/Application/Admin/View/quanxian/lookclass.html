@@ -1,0 +1,43 @@
+<extend name="Publice:index" />
+<block name="header">
+   <div class="mws-panel grid_8">
+       <h2>权限分类列表展示</h2>
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i> 权限类列表</span>
+        </div>
+        <div class="mws-panel-body no-padding">
+            <table class="mws-table">
+                <thead>
+                    <tr>
+                        <th>权限分类ID</th>
+                        <th>权限类名</th>
+                        <th>描述</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <foreach name='list' item='row'>
+                    <tr>
+                        <td style=" text-align: center;">
+                                {$row['id']}
+                        </td>
+                        <td style=" text-align: center;">
+                                {$row['name']}
+                        </td>
+                        <td style=" text-align: center;">
+                                {$row['describe']}
+                        </td>
+                        <td  style=" text-align: center;">
+                             <a href="__URL__/lookclass/delid/{$row['id']}" class="btn btn-danger">删除</a>
+                             <a href="__URL__/lookclass/editid/{$row['id']}" class="btn btn-warning">修改</a><br>
+                        </td>
+                    </tr>
+                   </foreach>
+                </tbody>
+               <tr>
+                    <td colspan="16" align="center">{$fen}</td>
+               </tr>
+            </table>
+        </div>
+    </div>
+</block>

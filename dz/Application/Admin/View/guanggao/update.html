@@ -1,0 +1,361 @@
+<extend name="Publice:index" />
+<block name="header">
+	  <div class="mws-panel grid_8">
+        <h2>用户信息修改</h2>
+        <div class="mws-panel-header">
+            <span><i class="icon-ok"></i>用户信息修改</span>
+        </div>
+        <div class="mws-panel-body no-padding">
+            <form id="mws-validate" class="mws-form" action="__URL__/update" method="post" enctype="multipart/form-data">
+                <div id="mws-validate-error" class="mws-form-message error" style="display:none;"></div>
+                <div class="mws-form-inline">
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">标题</label>
+                        <div class="mws-form-item">
+                            <input type="hidden" name='id' value="{$res['id']}">
+                            <input type="text" name="title" class="required large" value="{$res['title']}">
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">URL</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="url" class="required email large" value="{$res['url']}">
+                        </div>
+                    </div>
+
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">推广模式</label>
+                        <div class="mws-form-item ">
+                                <select name="tgms">
+                                    <!-- <option value="0" <if condition="$res['tgms'] == 0">selected="selected"</if> >
+                                        CPM(弹窗付费)
+                                    </option> -->
+                                    <option value="1" <if condition="$res['tgms'] == 1">selected="selected"</if> >
+                                        CPC(点击付费)
+                                    </option>
+                                    <!-- <option value="2" <if condition="$res['tgms'] == 2">selected="selected"</if> >
+                                        CPS(成功销售付费)
+                                    </option> -->
+                                    <option value="3" <if condition="$res['tgms'] == 3">selected="selected"</if> >
+                                        CPV(展示付费)
+                                    </option>
+                                </select>
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">单价</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="money" value="<php> echo admin_fenToYuan($res['money']);</php>" class="required digits large">
+                        </div>
+                    </div>
+
+                     <div class="mws-form-row">
+                        <label class="mws-form-label">预算金额</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="budget" value="<php> echo admin_fenToYuan($res['budget']);</php>" class="required digits large">
+                        </div>
+                    </div>
+
+
+                     <div class="mws-form-row">
+                        <label class="mws-form-label">消费金额</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="expense" value="<php> echo admin_fenToYuan($res['expense']);</php>" class="required digits large">
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">结算方式</label>
+                        <div class="mws-form-item ">
+                                <select name="jsfs">
+                                     <if condition="$res['jsfs'] == 1">
+                                            <option value="1" selected="selected">
+                                                支付宝
+                                            </option>
+                                            <option value="0" >
+                                                微信
+                                            </option>
+                                        <else/>
+                                            <option value="0" selected="selected">
+                                                微信
+                                            </option>
+                                            <option value="1" >
+                                                支付宝
+                                            </option>
+                                        </if>
+
+                                </select>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">计算周期</label>
+                        <div class="mws-form-item ">
+                                <select name="jszq">
+                                     <if condition="$res['jszq'] == 0">
+                                            <option value="0" selected="selected">
+                                                天
+                                            </option>
+                                            <option value="1" >
+                                                月
+                                            </option>
+                                            <option value="2" >
+                                                年
+                                            </option>
+
+                                        <else/>
+
+                                        <if condition="$res['jszq'] == 1">
+                                            <option value="1" selected="selected">
+                                                    月
+                                            </option>
+                                            <option value="0" >
+                                                    天
+                                            </option>
+                                            <option value="2" >
+                                                    年
+                                            </option>
+                                        <else/>
+
+                                            <option value="2" selected="selected">
+                                                   年
+                                            </option>
+                                            <option value="1" >
+                                                   月
+                                            </option>
+                                            <option value="0" >
+                                                   天
+                                                </option>
+                                            </if>
+                                        </if>
+
+                                </select>
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">备注</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="remark" class="required url large" value="{$res['remark']}">
+                        </div>
+                    </div>
+
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">广告状态</label>
+                        <div class="mws-form-item ">
+                                <select name="status">
+                                     <if condition="$res['status'] == 0">
+                                            <option value="0" selected="selected">
+                                                上线
+                                            </option>
+                                            <option value="1" >
+                                               下线
+                                            </option>
+                                        <else/>
+                                            <option value="1" selected="selected">
+                                                下线
+                                            </option>
+                                            <option value="0" >
+                                                上线
+                                            </option>
+                                        </if>
+
+                                </select>
+                        </div>
+                    </div>
+
+
+                       <div class="mws-form-row">
+                        <label class="mws-form-label">投放位置</label>
+                        <div class="mws-form-item ">
+                                <select name="type" id="selectBtn" onchange="selectItem()">
+                                     <if condition="$res['type'] == 0">
+                                            <option value="0" selected="selected">
+                                                所有文章
+                                            </option>
+                                            <option value="1" >
+                                                指定文章
+                                            </option>
+                                            <option value="2" >
+                                                指定分类
+                                            </option>
+
+                                        <else/>
+
+                                        <if condition="$res['type'] == 1">
+                                            <option value="1" selected="selected">
+                                                指定文章
+                                            </option>
+                                            <option value="0" >
+                                                所有文章
+                                            </option>
+                                            <option value="2" >
+                                                指定分类
+                                            </option>
+                                        <else/>
+
+                                            <option value="2" selected="selected">
+                                                指定分类
+                                            </option>
+                                            <option value="1" >
+                                                指定文章
+                                            </option>
+                                            <option value="0" >
+                                                全部文章
+                                                </option>
+                                            </if>
+                                        </if>
+
+                                </select>
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row" id="ruanwensousuoBox">
+                        <label class="mws-form-label">文章搜索</label>
+                        <div class="mws-form-item">
+                             <div class="col-md-6">
+                                <input type="text"  class="ruanwen" class="required large">
+                                <a  class="btn btn-success shousuo">搜索</a>
+                             </div>
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row" id="fenleisousuoBox">
+                        <label class="mws-form-label">分类搜索</label>
+                        <div class="mws-form-item">
+                             <div class="col-md-6">
+                                <input type="text"  class="fenlei" class="required large">
+                                <a  class="btn btn-success fenleishousuo">搜索</a>
+                             </div>
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row" id="ruanwensousuoXox">
+                        <label class="mws-form-label">对应文章</label>
+                        <div class="mws-form-item num">
+                            <foreach name="ruanwen" item = "ruanwen">
+                                <input type="checkbox" name="rwid[]" checked value="{$ruanwen['id']}">{$ruanwen['title']}
+                            </foreach>
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row" id="fenleisousuoXox">
+                        <label class="mws-form-label">对应分类</label>
+                        <div class="mws-form-item num">
+                            <foreach name="fenlei" item = "fenlei">
+                                <input type="checkbox" name="flid[]" checked value="{$fenlei['id']}">{$fenlei['name']}
+                            </foreach>
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">展示模板</label>
+                        <div class="mws-form-item ">
+                                <select name="zsxg">
+                                    <foreach name="moban" item = "moban">
+                                        <if condition="$res['zsxg'] == $moban['id']">
+                                            <option value="{$moban['id']}" selected="selected">
+                                                {$moban['name']}
+                                            </option>
+                                        <else/>
+                                            <option value="{$moban['id']}">
+                                                {$moban['name']}
+                                            </option>
+                                        </if>
+                                    </foreach>
+                                </select>
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">广告状态</label>
+                        <div class="mws-form-item ">
+                                <select name="display">
+                                     <if condition="$res['display'] == 0">
+                                            <option value="0" selected="selected">
+                                               单独展示
+                                            </option>
+                                            <option value="1" >
+                                               多个展示
+                                            </option>
+                                        <else/>
+                                         
+                                            <option value="0">
+                                                单独展示
+                                            </option>
+                                            <option value="1" selected="selected">
+                                                多个展示
+                                            </option>
+                                    </if>
+
+                                </select>
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">修改图片</label>
+                        <div class="mws-form-item">
+                            <input type="file" name="pic" class="required digits large"   value="{$res['pic']}">
+                        </div>
+                    </div>
+                </div>
+                <div class="mws-button-row">
+                    <input type="submit" class="btn btn-success" value='执行修改'>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(".shousuo").click(function(){
+            var val = $(".ruanwen").val();
+
+            $.post('__URL__/xiugaisousuo',{val:val},function(data){
+                var title = '';
+                for (var i = 0; i < data.num.length; i++) {
+                    var table = "<input type = 'checkbox' name='rwid[]' value='"+data.num[i].id+"'>"+data.num[i].title
+                    title += table;
+                };
+                    $(".num").html(title);
+            })
+        });
+
+        $(".fenleishousuo").click(function(){
+            var v = $(".fenlei").val();
+
+            $.post('__URL__/xiugaifenlei',{v:v},function(data){
+                var title = '';
+                for (var i = 0; i < data.num.length; i++) {
+                    var table = "<input type = 'checkbox' name='flid[]' value='"+data.num[i].id+"'>"+data.num[i].name
+                    title += table;
+                };
+                    $(".num").html(title);
+            })
+        });
+
+        window.onload = function(){
+            selectItem();
+        }
+        function selectItem(){
+            value = $('#selectBtn').val();
+            if (value == 0) {
+                $('#ruanwensousuoBox,#ruanwensousuoXox,#fenleisousuoBox,#fenleisousuoXox').hide()
+             }else if(value == 1){
+                $('#ruanwensousuoBox,#ruanwensousuoXox').show()
+                $('#fenleisousuoBox,#fenleisousuoXox').hide()
+             }else if(value == 2){
+                $('#ruanwensousuoBox,#ruanwensousuoXox').hide()
+                $('#fenleisousuoBox,#fenleisousuoXox').show()
+                
+            }
+        }
+
+    </script>
+</block>

@@ -1,0 +1,16 @@
+<extend name="Publice:index"/>
+<block name="header">
+<div class="page_title">
+ <h2 class="fl">添加分类</h2>
+ <a href="__MODULE__/RuanWen/category" class="fr top_rt_btn add_icon">分类列表</a>
+</div>
+<center>
+	<div style="width: 80%;">
+		<form action="?op=save" enctype="multipart/form-data" method="post">
+			<span style="position: absolute;left: 10px;">名称：</span>
+			<input type="text" name="name" class="textbox textbox_225" style="width: 98%;margin-bottom: 15px;" placeholder="分类名称"/><br>
+			<input type="submit" class="link_btn" value="添加"/>
+		</form>
+	</div>
+</center>
+</block>

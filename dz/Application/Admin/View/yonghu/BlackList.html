@@ -1,0 +1,64 @@
+<extend name="Publice:index" />
+<block name="header">
+	 <div class="mws-panel grid_8">
+        <h2>用户列表展示</h2>
+        <div style="margin-bottom: 16px;">
+            <form name="fsoso" method="post" action="{:U('search')}" style="width:550px">
+            <input type="text" name="aci" class="dfinput" value="{$aci}" style="width:200px" />
+            <input  type="submit" class="btn" value="查询" >
+        </form>
+        </div>
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i> 用户列表</span>
+
+        </div>
+        <div class="mws-panel-body no-padding">
+            <table class="mws-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <!-- <th>Openid</th> -->
+                        <th>Pid</th>
+                        <th>电话</th>
+                        <th>用户名</th>
+                        <th>头像</th>
+                        <th>余额</th>
+                        <th>累计收入</th>
+                        <th>创建时间</th>
+                        <th>是否为黑名单</th>
+                        <!-- <th>邀请链接</th> -->
+                        <th>修改时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <foreach name='list' item='row'>
+                    <tr>
+                        <td style=" text-align: center;">{$row['id']}</td>
+                        <!-- <td style=" text-align: center;">{$row['openid']}</td> -->
+                        <td style=" text-align: center;">{$row['pid']}</td>
+                        <td style=" text-align: center;">{$row['phone']}</td>
+                        <td style=" text-align: center;">{$row['username']}</td>
+                        <td style=" text-align: center;width:50px;"><img src="{$row['avatar']}"></td>
+                        <td style=" text-align: center;">{$row['money']}</td>
+                        <td style=" text-align: center;">{$row['money_total']}</td>
+                        <td style=" text-align: center;">{$row['create_time' | date="Y-m-d H:i:s",###]}</td>
+                        <td style=" text-align: center;">
+                            <if condition="$row['status'] == 0">否</if>
+                            <if condition="$row['status'] == 2">是</if>
+                        </td>
+
+                        <!-- <td style=" text-align: center;">{$row['invite_url']}</td> -->
+                        <td style=" text-align: center;">{$row['update_time' | date="Y-m-d H:i:s",###]}</td>
+                        <td  style=" text-align: center;">
+
+                            <a href="__URL__/setWhite/id/{$row['id']}" class="btn btn-warning">取消黑名单</a>
+                        </td>
+                    </tr>
+                   </foreach>
+                </tbody>
+                <tr><td colspan="16" align="center">{$fen}</td></tr>
+            </table>
+        </div>
+    </div>
+</block>

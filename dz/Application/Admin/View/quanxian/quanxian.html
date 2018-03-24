@@ -1,0 +1,85 @@
+<extend name="Publice:index" />
+<block name="header">
+ <div class="mws-panel grid_8">
+        <h2>权限列表展示</h2>
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i>权限列表</span>
+        </div>
+        <div class="mws-panel-body no-padding">
+            <table class="mws-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>权限名称</th>
+                        <th>控制器</th>
+                        <th>方法</th>
+                        <th>权限描述</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <foreach name='result' item='row'>
+                    <tr>
+                        <td>{$row['id']}</td>
+                        <td>{$row['name']}</td>
+                        <td>{$row['mname']}</td>
+                        <td>{$row['aname']}</td>
+
+                        <td>{$row['describe']}</td>
+                 <td>
+                    <a href="__URL__/quanxiandel/id/{$row['id']}" title="删除" class="btn btn-danger icon-trash"></a>
+                    <a href="__URL__/quanxianedit/id/{$row['id']}" title="修改" class="btn btn-primary icon-tools"></a>
+                    </tr>
+                   </foreach>
+                </tbody>
+                <tr><td colspan="8" align="center">{$fen}</td></tr>
+            </table>
+        </div>
+    </div>
+<!--引入jquery文件-->
+<script src="__PUBLIC__/Project/Admin/b/js/demo/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+inp=$("<input type='text' />")
+$(".status").dblclick(function(){
+    tr=$(this);
+    var trval=$(this).text();
+    tr.empty();
+    tr.append(inp);
+    inp.attr('value',trval);
+    inp.attr('size',2)
+    inp.focus()
+    inp.blur(function(){
+        var inpval=$(this).val();
+        if(trval==inpval){
+            tr.html(inpval);
+            return false;
+        }
+
+        var id=$(this).parents('tr').find("td:first").html();
+        $.ajax({
+            //请求的服务器端页面
+            'url':'__URL__/update',
+            'type':'get',
+            //附加参数
+            'data':{id:id,status:inpval},
+            success:
+            function(data){
+               // alert(data);
+                if(data==1){
+                    //重新把修改以后的值赋值给td
+                    tr.html(inpval);
+                    alert('修改成功');
+                }
+            },
+            error:
+            function(){
+                alert('Ajax响应失败');
+            }
+        })
+
+    })
+
+})
+</script>
+ 
+</block>

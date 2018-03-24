@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>文章预览</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/App/article.css">
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body id="activity-detail" class="zh_CN mm_appmsg" style="background-color:#333;">
+<div style="position: fixed;width: 100%;height: 100%;background-color: rgba(8, 8, 8, 0.6);z-index: 9999;">
+    <img style="width: 100%;" src="https://new-weizhuan.oss-cn-shenzhen.aliyuncs.com/ueditor/1515212551686719.png">
+</div>
+<div id="wrapper" style="position:absolute;top:0;bottom:0;left:0;right:0;">
+    <div id="scroll" style="position:absolute;background-color:#f3f3f3;z-index:100;width:100%;">
+        <div id="js_article" class="rich_media">
+            <div class="rich_media_inner">
+                <div id="page-content">
+                    <div id="img-content" class="rich_media_area_primary" style="padding-top:5px;">
+                        <h2 class="rich_media_title" id="activity-name">【爱阅赚】{$article['title']}</h2>
+                        <div class="rich_media_meta_list" style="margin-bottom:0;">
+                            <em id="post-date" class="rich_media_meta rich_media_meta_text">{$article['create_time']}</em>
+                        </div>
+                        {$article['content']}
+                        <div class="rich_media_tool" id="js_toobar" style="padding-top:10px;">
+                            <div id="js_read_area" class="media_tool_meta tips_global meta_primary" >阅读 <span id="readNum">{$article['read_num']}</span></div>
+                            <div  class="media_tool_meta meta_primary tips_global meta_praise" id="like">
+                                <!-- <i class="icon_praise_gray"></i> -->分享
+                                <span class="praise_num" id="likeNum">{$article['share_num']}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var shareId = '{$shareId}';
+    var share_info = {
+        title: "<?php echo (str_replace('"', '\"', $article['title']));?>",
+        desc: "{$article['describe']}",
+        link: "{$article['share_url']}",
+        imgUrl: "http:{$article['thumb']}",
+        success: function () {
+            $.get("__MODULE__/Article/share?id=" + shareId);
+        }
+    }
+    var ua = window.navigator.userAgent.toLowerCase();
+    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+        $.get("__MODULE__/Js/api?url=" + encodeURIComponent(location.href.split('#')[0]), "", function(req){
+            if (req.code == 0) {
+                req.data.jsApiList.push("hideOptionMenu");
+                req.data.jsApiList.push("showMenuItems");
+                console.log(req.data);
+                wx.config(req.data);
+                wx.ready(function() {
+                    wx.hideOptionMenu();
+                    wx.showMenuItems({
+                      menuList: ["menuItem:favorite"]
+                    });
+                    wx.onMenuShareTimeline(share_info);
+                    wx.onMenuShareAppMessage(share_info);
+                    wx.onMenuShareQQ(share_info);
+                    wx.onMenuShareWeibo(share_info);
+                    wx.onMenuShareQZone(share_info);
+                });
+            }
+        });
+    }
+</script>
+</html>

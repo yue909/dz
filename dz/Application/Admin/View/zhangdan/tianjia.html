@@ -1,0 +1,59 @@
+<extend name="Publice:index" />
+<block name="header">
+	 <div class="mws-panel grid_8">
+        <h2>新账单添加</h2>
+        <div class="mws-panel-header">
+            <span><i class="icon-ok"></i> 添加新账单</span>
+        </div>
+        <div class="mws-panel-body no-padding">
+            <form id="mws-validate" class="mws-form" action="__URL__/doadd" method="post">
+                <div id="mws-validate-error" class="mws-form-message error" style="display:none;"></div>
+                <div class="mws-form-inline">
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">用户名</label>
+                        <div class="mws-form-item">
+                            <select name="username">
+                                <foreach name = "users" item = "user">
+                                    <option value="{$user['username']}">
+                                        {$user['username']}
+                                    </option>
+                                </foreach>
+                                        <input type="hidden" name="userid" value="{$user['id']}">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">项目名称</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="pname" class="required email large">
+                        </div>
+                    </div>
+                   
+                
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">分成模式</label>
+                        <div class="mws-form-item">
+                            <select name="pattern">
+                                <option value="0">固定模式</option>
+                                <option value="1">比例模式</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">金额</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="money" class="required digits large">
+                        </div>
+                    </div>
+                     
+                   
+                   
+                </div>
+                <div class="mws-button-row">
+                    <input type="submit" class="btn btn-success" value='提交添加'>
+                </div>
+            </form>
+        </div>      
+    </div>
+</block>

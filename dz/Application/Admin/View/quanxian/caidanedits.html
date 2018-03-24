@@ -1,0 +1,39 @@
+<extend name="Publice:index" />
+<block name="header">
+<div class="mws-panel grid_8">
+        <h2>后台管理菜单</h2>
+        <div class="mws-panel-header">
+            <span><i class="icon-ok"></i> 修改菜单</span>
+        </div>
+        <div class="mws-panel-body no-padding">
+            <form id="mws-validate" class="mws-form" action="__MODULE__/QuanXian/caidaneditts" method="post">
+                <div id="mws-validate-error" class="mws-form-message error" style="display:none;"></div>
+                <div class="mws-form-inline">
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">菜单名称</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="name" class="required large" value="{$caidan['name']}">
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">控制器</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="contro" class="required" value="{$caidan['contro']}" >
+                            <label for="picture" class="error" generated="true" style="display:none"></label>
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">方法</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="action" class="required large" value="{$caidan['action']}">
+                        </div>
+                    </div>
+                </div>
+                <div class="mws-button-row">
+                    <input type="hidden" name="id" value="{$caidan['id']}">
+                    <input type="submit" class="btn btn-success" value='确认修改'>
+                </div>
+            </form>
+        </div>      
+    </div>
+</block>

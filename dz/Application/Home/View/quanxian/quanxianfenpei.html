@@ -1,0 +1,24 @@
+<extend name="Publice:index" />
+<block name="header">
+    
+  <form id="mws-validate" class="mws-form" action="__URL__/uquanxianfenpei" method="post">
+    <div class="mws-form-row">
+        <label class="mws-form-label"><h4>为角色：<span style="color:red"> {$jiaose['name']}</span>分配权限</h4></label>
+        <div class="mws-form-item clearfix">
+            <ul class="mws-form-list inline">
+
+            <foreach name='quanxian' item='row'>
+                    <li><input type="checkbox" <if condition="in_array($row['id'],$quanxianguanli)">checked</if> name='nid[]' value="{$row['id']}" > <label>{$row['name']}</label></li>
+            </foreach>
+            </ul>
+        </div>
+    </div>
+    <input type="hidden" name='rid' value="{$jiaose['id']}">
+    
+    <div class="mws-button-row">
+        <input type="submit" class="btn btn-success" value='执行添加'>
+    </div>
+<form>
+ 
+
+</block>

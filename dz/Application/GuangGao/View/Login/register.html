@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/iview/2.7.4/styles/iview.css"> -->
+    <!-- <script src="https://cdn.bootcss.com/vue/2.5.9/vue.min.js"></script> -->
+    <!-- <script src="https://cdn.bootcss.com/iview/2.7.4/iview.min.js"></script> -->
+    <!-- <script src="https://captcha.luosimao.com/static/dist/api.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admins/css/layer.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admins/css/reset.css" />
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admins/js/layer.js" ></script>
+    <script src="//captcha.luosimao.com/static/dist/api.js"></script>
+	<title>register</title>
+	<style type="text/css">
+        body{
+            background: url("__PUBLIC__/Admins/images/loginbg.jpg") no-repeat left top;
+        }
+		.fl{
+			float: left;
+		}
+		.fr{
+			float: right;
+		}
+		.clearfix:after{content:"";display:block;height:0;clear:both;visibility:hidden}
+		.clearfix{*zoom:1}
+		.container{
+			width: 1100px;
+			margin: 50px auto;
+		}
+		.con{
+			width: 432px;
+			margin: 50px auto;
+			display: flex;
+			flex-direction: column;
+		}
+		.con h1{
+			font-size: 25px;
+			color: #666;
+			text-align: center;
+		}
+		.con div.flex{
+			width: 100%;
+			height: 48px;
+			box-sizing: border-box;
+			border: 1px solid #ccc;
+			margin-top: 20px;
+			background: #eee;
+			flex: 1;
+			display: flex;
+			align-items: center;
+		}
+		.con div.flex label{
+			display: inline-block;
+			width: 120px;
+			text-align: center;
+		}
+		.con div.flex input{
+			height: 100%;
+			box-sizing: border-box;
+			flex: 1;
+			padding-left: 10px;
+		}
+		.con div.flex button{
+			height: 100%;
+			cursor: pointer;
+		}
+		#checkboxInput{
+			width: 15px;
+			height: 15px;
+			flex: none;
+			margin-left: 20px;
+			margin-right: 20px;
+		}
+		.con div.res{
+			width: 100%;
+			border-radius: 4px;
+			text-align: center;
+			cursor: pointer;
+			background: #ffc800;
+			color: #fff;
+		}
+		.tips{
+			text-align: center;
+			padding: 5px 0;
+			display: none;
+			color: red;
+		}
+		#code{
+			padding: 0 10px;
+			cursor: pointer;
+			height: 100%;
+			display: flex;
+			align-items: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="clearfix">
+			<span class="fl">欢迎注册</span>
+			<span class="fr">已有账号？<a href="__MODULE__/Login/login">直接登录</a></span>
+		</div>
+		<div class="con">
+			<h1>广告注册</h1>
+			<div class="flex qiye"><label>企业名称</label><input type="" name="" placeholder="请输入企业名称"></div>
+			<p  class="tips">请输入正确的企业名称</p>
+			<div class="flex name"><label>联系人姓名</label><input type="" name="" placeholder="请输入姓名"></div>
+			<p  class="tips">请输入正确的姓名</p>
+			<div class="flex nickname"><label>昵称</label><input type="" name="" placeholder="请输入昵称"></div>
+			<p  class="tips">请输入正确的昵称</p>
+			<div class="flex phone"><label>手机号+86</label><input type="" name="phone" placeholder="请输入手机号"></div>
+			<p  class="tips">请输入正确的手机号</p>
+			<div class="flex yangzhenma"><label>手机验证码</label><input   placeholder="请输入手机验证码"><div id="code">获取验证码</div></div>
+			<p  class="tips">请输入正确的手机验证码</p>
+			<div class="flex youxiang"><label>邮箱</label><input type="" name="" placeholder="请输入邮箱"></div>
+			<p  class="tips">请输入正确的邮箱</p>
+			<div class="flex mima"><label>设置密码</label><input type="" name="" placeholder="请输入密码"></div>
+			<p  class="tips">请输入符合规则的密码</p>
+			<!-- <div class="flex xieyi"><input id="checkboxInput" type="checkbox" name="" ><span>我已阅读并接受<a href="">《新榜网站注册协议》</a></span></div> -->
+			<!-- <div class="l-captcha" data-site-key="1cbdf0bd77a0f29309e23009180674d3" data-callback="getResponse"></div> -->
+			<div class="res flex">
+				<div class="res" id="fabu">立即注册</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+<script type="text/javascript">
+    var tag1,tag2,tag3,tag4,tag5,tag6,tag7,value1,value2,value3,value4,value5,value6,value7;
+    $(".con .qiye input").blur(function(){
+//        企业名称
+        var reg =  /^([\u4e00-\u9fa5\·]{1,20})$/;
+        value1 = $(this).val();
+        tag1 = reg.test(value1);
+        if(!tag1){
+            $(this).parent().next().css({
+                "display":"block"
+            })
+        }else{
+            $(this).parent().next().css({
+                "display":'none'
+            })
+        }
+    });
+    $(".con .name input").blur(function(){
+//        联系人姓名
+        var reg =  /^([\u4e00-\u9fa5\·]{1,4})$/;
+        value2 = $(this).val();
+        tag2 = reg.test(value2);
+        if(!tag2){
+            $(this).parent().next().css({
+                "display":"block"
+            })
+        }else{
+            $(this).parent().next().css({
+                "display":'none'
+            })
+        }
+    });
+        $(".con .nickname input").blur(function(){
+    		//  昵称
+            var reg =  /^((\w|[\u4e00-\u9fa5\·]){1,6})$/;
+            value8 = $(this).val();
+            tag8 = reg.test(value8);
+            if(!tag8){
+                $(this).parent().next().css({
+                    "display":"block"
+                })
+            }else{
+                $(this).parent().next().css({
+                    "display":'none'
+                })
+            }
+        });
+//电话
+    $(".con .phone input").blur(function(){
+        var reg = /^[1][3,4,5,7,8][0-9]{9}$/;
+        value3 = $(this).val();
+
+        tag3 = reg.test(value3);
+        if(!tag3){
+            $(this).parent().next().css({
+                "display":"block"
+            })
+        }else{
+            $(this).parent().next().css({
+                "display":'none'
+            })
+        }
+    });
+//手机验证码
+    $(".con .yangzhenma input").blur(function(){
+        var reg = /^\d{6}$/;
+        value4 = $(this).val();
+
+        tag4 = reg.test(value4);
+        if(!tag4){
+            $(this).parent().next().css({
+                "display":"block"
+            })
+        }else{
+            $(this).parent().next().css({
+                "display":'none'
+            })
+        }
+    });    
+//邮箱
+    $(".con .youxiang input").blur(function(){
+        var reg =/^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/;
+        value5 = $(this).val();
+
+        tag5 = reg.test(value5);
+        if(!tag5){
+            $(this).parent().next().css({
+                "display":"block"
+            })
+        }else{
+            $(this).parent().next().css({
+                "display":'none'
+            })
+        }
+    });
+//设置密码
+    $(".con .mima input").blur(function(){
+        var reg =  /^\w{6}$/;
+        value6 = $(this).val();
+        tag6 = reg.test(value6);
+        if(!tag6){
+            $(this).parent().next().css({
+                "display":"block"
+            })
+        }else{
+            $(this).parent().next().css({
+                "display":'none'
+            })
+        }
+    });
+
+    $("#fabu").click(function(){
+    	//    《新榜网站注册协议》
+    	// tag7 = $(".con .xieyi input").is(':checked')
+    	// console.log(tag7)
+
+        if ( tag1&&tag2&&tag3&&tag4&&tag5&&tag6&&tag8 ){
+        	// console.log('success')
+        	// return
+            $.post("{:U('Api/register')}",{Companyname:value1,name:value2,phone:value3,code:value4,email:value5,password:value6,account:value8
+               },function(data){
+               	// console.log(data);
+               	
+                	if(data.code == 1){
+                	    layer.open({
+                	        content: data.msg
+                	        ,btn: '我知道了',
+                	        yes: function () {
+                	        	window.location.href="__MODULE__/Login/login"
+                	        }
+                	    });
+                	}else{
+                	    layer.open({
+                	        content: data.msg
+                	        ,btn: '我知道了'
+                	    });
+                	};
+            })
+
+        }else{
+            layer.open({
+                content: '请先填入正确的选项'
+                ,btn: '我知道了'
+            });
+        }
+    });
+    var nomanyClickFlag = false;
+	$("#code").click(function(){
+		if (nomanyClickFlag==true) {
+			return
+		}
+		var phone = $("input[name='phone']").val();
+		if (tag1&&tag2&&tag3&&tag8) {
+			$.post("__MODULE__/Api/coderequest",{phone : phone},function(data){
+				alert(data.msg);
+				nomanyClick();
+			});
+		}else{
+			layer.open({
+                content: '请先填入正确的选项'
+                ,btn: '我知道了'
+            });
+		}
+	});
+	function nomanyClick(){
+		nomanyClickFlag = true
+        var num = 60;
+        var buttonTxt = '';
+        var time = setInterval(function(){
+            num--;
+            buttonTxt = num+'秒后重试';
+            if (num == 0) {
+                buttonTxt = '获取验证码';
+                nomanyClickFlag = false
+                clearInterval(time)
+            }
+            $('#code').html(buttonTxt)
+        },1000)
+    }
+    // var captcha="";
+    // function getResponse(data) {
+    // 	console.log(data)
+    // 	captcha = data;
+    // }
+</script>
+</html>
+

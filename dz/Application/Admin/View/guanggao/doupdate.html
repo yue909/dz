@@ -1,0 +1,72 @@
+<extend name="Publice:index" />
+<block name="header">
+	  <div class="mws-panel grid_8">
+        <h2>用户信息修改</h2>
+        <div class="mws-panel-header">
+            <span><i class="icon-ok"></i>用户信息修改</span>
+        </div>
+        <div class="mws-panel-body no-padding">
+            <form id="mws-validate" class="mws-form" action="__URL__/doupdate" method="post" enctype="multipart/form-data">
+                <div id="mws-validate-error" class="mws-form-message error" style="display:none;"></div>
+                <div class="mws-form-inline">
+                    <!-- <div class="mws-form-row">
+                        <label class="mws-form-label">关联广告ID</label>
+                        <div class="mws-form-item">
+                            <input type="hidden" name='id' value="{$res['id']}">
+                            <input type="text" name="title" class="required large" value="{$res['gid']}">
+                        </div>
+                    </div> -->
+                   
+                    <div class="mws-form-row" id="fenleisousuoBox">
+                        <label class="mws-form-label">广告搜索</label>
+                        <div class="mws-form-item">
+                             <div class="col-md-6">
+                                <input type="text" class="text" class="required large">
+                                <a  class="btn btn-success fenleishousuo">搜索</a>
+                             </div>
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row" id="fenleisousuoXox">
+                        <label class="mws-form-label">广告修改</label>
+                        <div class="mws-form-item num">
+                            <input type="hidden" name='id' value="{$res['id']}">
+                            <select name="bd_id" id="ad_list" style="width: 150px;">
+                              <foreach name="ad" item="vo">
+                                <if condition="$vo.id == $res['id']">
+                                    <option value="{$vo.id}" selected = "selected" >{$vo.title}</option>
+                                <else/>
+                                    <option value="{$vo.id}">{$vo.title}</option>
+                                </if>
+                              </foreach>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="mws-button-row">
+                    <input type="submit" class="btn btn-success" value='执行修改'>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(".fenleishousuo").click(function(){
+            var val = $(".text").val();
+
+            $.post('__URL__/Searchadvertising',{val:val},function(data){
+                var title = '';
+            
+                for (var i = 0; i < data.num.length; i++) {
+                    //var table = "<input type = 'checkbox' name='rwid[]' value='"+data.num[i].id+"'>"+data.num[i].title
+                    //var table = "<input type = 'checkbox' name='rwid[]' value='"+data.num[i].id+"'>"+data.num[i].title
+                    var table = '<option value="'+data.num[i].id+'">'+data.num[i].title+'</option>'
+                    title += table;
+                };
+                    $("#ad_list").html(title);
+            })
+        })
+
+
+    </script>
+</block>

@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>充值</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/member.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/layer.css" />
+   <style>
+        .pay li{
+            float: left;
+            width: 32%;
+            margin-left: 1%;
+            margin-top: 10px;
+            font-size: 0.75rem;
+        }
+        .jinbi li{
+            float: left;
+            width: 32%;
+            margin-left: 1%;
+            margin-top: 10px;
+            font-size: 0.75rem;
+        }
+    </style>
+</head>
+<body>
+
+ 
+<div class="aui-content" style="padding: 0 20px; margin-top: 10px">
+    请选择您的充值金额：
+</div>
+<div class="aui-content" style="padding: 0 20px;">
+    <ul class="jinbi">
+        <li class="aui-btn aui-btn-danger aui-btn-block" tag="20">20金币</li>
+        <li class="aui-btn aui-btn-danger aui-btn-block aui-btn-outlined" tag="50">50金币</li>
+        <li class="aui-btn aui-btn-danger aui-btn-block aui-btn-outlined" tag="100">100金币</li>
+        <li class="aui-btn aui-btn-danger aui-btn-block aui-btn-outlined" tag="200">200金币</li>
+        <li class="aui-btn aui-btn-danger aui-btn-block aui-btn-outlined" tag="500">500金币</li>
+        <li class="aui-btn aui-btn-danger aui-btn-block aui-btn-outlined" tag="800">800金币</li>
+        <li class="aui-btn aui-btn-danger aui-btn-block aui-btn-outlined" tag="1000">1000金币</li>
+        <li class="aui-btn aui-btn-danger aui-btn-block aui-btn-outlined" tag="2000">2000金币</li>
+        <li class="aui-btn aui-btn-danger aui-btn-block aui-btn-outlined" tag="3000">3000金币</li>
+    </ul>
+</div>
+<div class="aui-content" style="padding: 0 20px;margin-top: 10px">
+    请选择您的支付方式：
+</div>
+<div class="aui-content" style="padding: 0 20px;">
+    <ul class="pay">
+        <li class="aui-btn aui-btn-danger aui-btn-block" tag="wxhtml">微信支付</li>
+     </ul>
+</div>
+
+<form method = "get" action = '{:U("Chongzhi/postpay")}'>
+     <input  id="moneys" name="money" value="20" type="text" style="width: 0;height: 0" />
+     <input   id="zhifu" name="pay_type" value="wxhtml" type="text" style="width: 0;height: 0"  />
+     <input type="hidden" name="id" value="{$uyue['id']}">
+     <input style="margin: 10px 28%;"type="image" type="submit" src="__PUBLIC__/Home/image/qrcz-btn.png" height="50" >
+     <input style="margin: 10px 28%; height: 50px " type="image" alt="submit"  src="__PUBLIC__/Home/image/qrcz-btn.png" >
+
+</form>
+ 
+<script type="text/javascript" src="__PUBLIC__/Home/script/jquery-3.2.1.min.js" ></script>
+<script type="text/javascript" src="__PUBLIC__/Home/script/layer.js" ></script>
+<script type="text/javascript">
+   // var appId,timeStamp,nonceStr,package,signType,paySign;
+    $(".jinbi li").click(function(){
+        $(".jinbi li").addClass("aui-btn-outlined");
+        $(this).removeClass("aui-btn-outlined");
+        $("#moneys").val($(this).attr("tag"));
+    });
+    $(".pay li").click(function(){
+        $(".pay li").addClass("aui-btn-outlined");
+        $(this).removeClass("aui-btn-outlined");
+        $("#zhifu").val($(this).attr("tag"));
+    });
+document.querySelector('body').addEventListener('touchmove', function(e) {
+    e.preventDefault();
+});
+
+  
+</script>
+</body>
+</html>

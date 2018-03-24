@@ -1,0 +1,49 @@
+<extend name="Publice:index" />
+<block name="header">
+<div class="page_title">
+ <h2 class="fl">分类列表</h2>
+ <a href="__MODULE__/RuanWen/category_add" class="fr top_rt_btn add_icon">添加分类</a>
+</div>
+<table class="table">
+ <tr>
+  <th width="3%;">Id</th>
+  <th width="10%;">名称</th>
+  <th width="15%;">更新时间</th>
+  <th width="10%;">操作</th>
+ </tr>
+
+ <foreach name="list" item="vo">
+   <tr>
+    <td>{$vo.id}</td>
+    <td>{$vo.name}</td>
+    <td>{$vo.update_time|date="Y-m-d h:i:s",###}</td>
+    <td>
+     <a href="__MODULE__/RuanWen/category_edit?id={$vo.id}" title="编辑" class="link_icon">&#101;</a>
+     <a href="#" title="删除" class="link_icon" onclick="Delete({$vo.id})">&#100;</a>
+    </td>
+   </tr>
+ </foreach>
+</table>
+<aside class="paging">
+{$page}
+</aside>
+<script type="text/javascript">
+  function Delete(id) {
+  	$.post("__MODULE__/RuanWen/category_inquire?id=" + id, "", function(rData){
+  		if (rData >= 1) {
+  			alert("该分类存在" + rData + "篇文章，无法删除！");
+  		} else {
+  			var result = confirm("id:" + id + " 是否删除？ ");
+		    if (result) {
+		      $.post('__MODULE__/RuanWen/category_delete?id=' + id, '', function(rData){
+		        if (rData.code == 1) {
+		          window.location.reload();
+		        }
+		      });
+		    }
+  		}
+  	});
+  }
+</script>
+
+</block>

@@ -1,0 +1,52 @@
+<extend name="Publice:index" />
+<block name="header">
+   <div class="mws-panel grid_8">
+       <h2>公共模板列表展示</h2>
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i>公共模板列表</span>
+
+        </div>
+        <div class="mws-panel-body no-padding">
+            <table class="mws-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>键名</th>
+                        <th>键值</th>
+                        <th>添加时间</th>
+                        <th>中文名</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <foreach name='list' item='row'>
+                    <tr>
+                        <td style=" text-align: center;">{$row['id']}</td>
+                        <td style=" text-align: center;">{$row['key']}</td>
+                        <td style=" text-align: center;">{$row['value']}</td>
+                        <td style=" text-align: center;">{$row['addtime']|date="Y-m-d H:i:s",###}</td>
+                        <td style=" text-align: center;">{$row['name']}</td>
+
+                        <td style=" text-align: center;">
+                            <if condition="$row['status'] == 0">开启</if>
+                            <if condition="$row['status'] == 1">关闭</if>
+                        </td>
+
+
+                        <td  style=" text-align: center;">
+                         <a href="__URL__/delete/id/{$row['id']}" class="btn btn-danger">删除</a>
+                         <a href="__URL__/edit/id/{$row['id']}" class="btn btn-warning">修改</a>
+                         <a href="__URL__/Sync/id/{$row['id']}" class="btn btn-warning">同步</a>
+                        </td>
+                 </tr>
+                   </foreach>
+                </tbody>
+
+                <tr>
+                    <td colspan="8" align="center">{$fen}</td>
+               </tr>
+            </table>
+        </div>
+    </div>
+</block>

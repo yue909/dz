@@ -1,0 +1,92 @@
+<extend name="Publice:index" />
+<block name="header">
+<div class="page_title">
+ <h2 class="fl">广告数据 - {$ad['title']}</h2>
+</div>
+<center>
+    <div style="width: 90%;">
+        <input type="submit" class="link_btn" style="left: 10%;position: absolute;" onclick="getData(0, 0)" value="今日"/>
+        <input type="submit" class="link_btn" style="left: 16%;position: absolute;" onclick="getData(1, 0)" value="昨日"/>
+        <input type="submit" class="link_btn" style="left: 22%;position: absolute;" onclick="getData(7, 0)" value="最近7天"/>
+        <input type="submit" class="link_btn" style="left: 30%;position: absolute;" onclick="getData(30, 0)" value="最近30天"/>
+    </div>
+    <br>
+    <div style="width: 90%;margin-top: 30px;">
+        <div style="position: fixed;width: 70%;height: 100%;z-index: 9;display: none;" id="loading">
+            <img style="width: 50px;top: 15%;position: absolute;" src="http://new-weizhuan.oss-cn-shenzhen.aliyuncs.com/common/5-121204193R0-50.gif">
+        </div>
+        <div id="mountNode"></div>
+    </div>
+</center>
+<style>::-webkit-scrollbar{display:none;}html,body{overflow:hidden;height:100%;}</style>
+<script>
+    document.body.clientHeight;
+</script>
+<script src="https://gw.alipayobjects.com/os/antv/assets/g2/3.0.2/g2.min.js"></script>
+<script src="https://gw.alipayobjects.com/os/antv/assets/data-set/0.8.0/data-set.min.js"></script>
+<script>
+    var chart = new G2.Chart({
+        container: 'mountNode',
+        forceFit: true,
+        height: 390
+    });
+    function init(data) {
+        var ds = new DataSet();
+        var dv = ds.createView().source(data);
+        dv.transform({
+            type: 'fold',
+            fields: ['展示', '点击'], // 展开字段集
+            key: 'name', // key字段
+            value: 'temperature' // value字段
+        });
+        chart.source(dv);
+        chart.tooltip({
+            crosshairs: {
+              type: 'line'
+            }
+        });
+        chart.axis('temperature', {
+            label: {
+              formatter: val => {
+                return val + '次';
+              }
+            }
+        });
+        chart.legend({
+            position: 'top', // 设置图例的显示位置
+        });
+        chart.line().position('date*temperature').color('name');
+        //chart.line().position('date*temperature').color('name').shape('smooth'); //曲线
+        chart.point().position('date*temperature').color('name').size(4).shape('circle').style({
+            stroke: '#fff',
+            lineWidth: 1
+        });
+        chart.render();
+    }
+
+    function getData(day, type) {
+        if (type == 0) {
+            $("#loading").show();
+        }
+        $.get("__MODULE__/GuangGao/getG2Data?id={$ad['id']}&day=" + day, "", function(req){
+            $("#loading").hide();
+            if (req.code == 1) {
+                if (type == 0) {
+                    chart.destroy();
+                    chart = new G2.Chart({
+                        container: 'mountNode',
+                        forceFit: true,
+                        height: 390
+                    });
+                    init(req.data);
+                } else {
+                    init(req.data);
+                }
+            }
+        });
+    }
+
+    getData(0, 1);
+
+</script>
+</block>

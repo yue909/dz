@@ -1,0 +1,64 @@
+<extend name="Publice:index"/>
+<block name="header">
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.js"></script>
+<div class="page_title">
+ <h2 class="fl">修改文章</h2>
+ <a href="__MODULE__/RuanWen/lists" class="fr top_rt_btn add_icon">文章列表</a>
+</div>
+<center>
+	<div style="width: 80%;">
+		<form action="?op=save&id={$ruanwen['id']}" enctype="multipart/form-data" method="post">
+			<span style="position: absolute;left: 10px;">分类：</span>
+			<div style="position: absolute;left: 11%;">
+				<select name="category" style="width: 150px;">
+			      <foreach name="category" item="vo">
+			      	<if condition="$vo.id == $ruanwen['category']">
+			      		<option value="{$vo.id}" selected = "selected" >{$vo.name}</option>
+			      	<else/>
+			      		<option value="{$vo.id}">{$vo.name}</option>
+			      	</if>
+			      </foreach>
+				</select>
+			</div>
+			<br><br>
+
+			<span style="position: absolute;left: 10px;">分享标题：</span>
+			<input type="text" name="title" class="textbox textbox_225" style="width: 98%;margin-bottom: 15px;" placeholder="标题 (分享标题)" value="{$ruanwen['title']}" /><br>
+			<span style="position: absolute;left: 10px;">分享描述：</span>
+			<input type="text" name="describe" class="textbox textbox_225" style="width: 98%;margin-bottom: 15px;" placeholder="描述 (分享描述,为空取全文前100字)" value="{$ruanwen['describe']}" /><br>
+			<span style="position: absolute;left: 10px;">文章内容：</span>
+			<script id="container" name="content" type="text/plain">
+	        {$ruanwen['content']}
+	        </script><br>
+			<span style="position: absolute;left: 10px;">分享图标：</span>
+			<div>
+				<img src="{$ruanwen['thumb']}" style="width: 50px;height: 50px;">
+		        <input type="file" name="thumb" class="textbox textbox_225" style="width: 90%;left: 20%;" placeholder="图片"/>
+			</div>
+
+		    <br>
+
+		    <span style="position: absolute;left: 10px;">阅读：</span>
+			<input type="text" name="read_num" class="textbox textbox_225" style="width: 98%;margin-bottom: 15px;" placeholder="阅读数量 选填" value="{$ruanwen['read_num']}" /><br>
+			<span style="position: absolute;left: 10px;">分享：</span>
+			<input type="text" name="share_num" class="textbox textbox_225" style="width: 98%;margin-bottom: 15px;" placeholder="分享数量 选填" value="{$ruanwen['share_num']}" /><br>
+
+			<span style="position: absolute;left: 10px;">状态：</span>
+			<div style="position: absolute;left: 11%;">
+				<label><input name="status" type="radio" value="0" <if condition="$ruanwen['status'] == '0'">checked</if> />显示 </label> 
+                <label><input name="status" type="radio" value="1" <if condition="$ruanwen['status'] == '1'">checked</if>/>隐藏 </label> 
+			</div>
+			
+			<br>
+			<input type="submit" class="link_btn" value="保存并发布"/>
+		</form>
+	</div>
+</center>
+     <script type="text/javascript">
+        var ue = UE.getEditor('container', {
+        	initialFrameHeight: 300
+        });
+     </script>
+</block>

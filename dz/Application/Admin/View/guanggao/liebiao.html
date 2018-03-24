@@ -1,0 +1,113 @@
+<extend name="Publice:index" />
+<block name="header">
+   <div class="mws-panel grid_8">
+       <h2>广告列表展示</h2>
+        <div class="search_form_2018">
+            <form name="fsoso" method="post" action="{:U('search')}" style="width:550px">
+                <input type="text" name="aci" class="dfinput" value="{$aci}" style="width:200px" />
+                <input  type="submit" class="btn" value="查询" >
+            </form>
+        </div>
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i> 广告列表</span>
+        </div>
+        <div class="mws-panel-body no-padding">
+            <table class="mws-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>标题</th>
+                        <th>URL</th>
+                        <th>模式</th>
+                        <th>价格</th>
+                        <th>消费金额</th>
+                        <th>预算金额</th>
+                        <th>投放位置</th>
+                        <th>结算周期</th>
+                        <th>备注</th>
+                        <th>展示方式</th>
+                        <th>图片</th>
+                        <th>状态</th>
+                        <th>添加时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <foreach name='list' item='row'>
+                    <tr>
+                        <td style=" text-align: center;">{$row['id']}</td>
+
+                        <td style=" text-align: center;">
+                            <a href="__URL__/detail/id/{$row['id']}" title="查看数据" target="_blank">{$row['title']}</a>
+                        </td>
+                        <td style=" text-align: center;">
+                            <a href="{$row['url']}" target="_blank">打开</a>
+                        </td>
+
+                        <td style="text-align: center;">
+                            <if condition="$row['tgms'] == 0"><span title="弹窗付费">CPM</span></if>
+                            <if condition="$row['tgms'] == 1"><span title="点击付费">CPC</span></if>
+                            <if condition="$row['tgms'] == 2"><span title="成功销售付费">CPS</span></if>
+                            <if condition="$row['tgms'] == 3"><span title="显示效果付费">CPV</span></if>
+                        </td>
+                        <td style=" text-align: center;"><php> echo admin_fenToYuan($row['money']);</php></td>
+                        <td style=" text-align: center;"><php> echo admin_fenToYuan($row['expense']);</php></td>
+                        <td style=" text-align: center;"><php> echo admin_fenToYuan($row['budget']);</php></td>
+                        <!-- <td style=" text-align: center;">
+                            <if condition="$row['jsfs'] == 0">微信</if>
+                            <if condition="$row['jsfs'] == 1">支付宝</if>
+                        </td> -->
+
+                        <td style=" text-align: center;">
+                            <if condition="$row['type'] == 0">全部文章</if>
+                            <if condition="$row['type'] == 1">指定文章</if>
+                            <if condition="$row['type'] == 2">指定分类</if>
+                        </td>
+
+
+                        <td style=" text-align: center;">
+                            <if condition="$row['jszq'] == 0">天</if>
+                            <if condition="$row['jszq'] == 1">月</if>
+                            <if condition="$row['jszq'] == 2">年</if>
+                        </td>
+
+                       <td style=" text-align: center;">
+                        <span title="{$row['remark']}">查看</span>
+                       </td>
+
+                        <td style=" text-align: center;">
+                            <if condition="$row['display'] == 0">单独</if>
+                            <if condition="$row['display'] == 1">多个</if>
+                        </td>
+                        <!-- <td style=" text-align: center;">{$row['zsxg']}</td> -->
+                        <td style=" text-align: center; width:80px;"><img src="{$row['pic']}"></td>
+
+                        <td style=" text-align: center;">
+                            <if condition="$row['status'] == 0">上线</if>
+                            <if condition="$row['status'] == 1"><span style="color: #F44336;">下线</span></if>
+                        </td>
+
+                        <td style=" text-align: center;">{$row['addtime' | date="Y-m-d H:i:s",###]}</td>
+
+
+                    <td  style=" text-align: center;">
+                     <a href="__URL__/delete/id/{$row['id']}" class="btn btn-danger">删除</a>
+                     <a href="__URL__/edit/id/{$row['id']}" class="btn btn-warning">修改</a><br>
+                     <a href="__URL__/Quick/id/{$row['id']}" class="btn btn-warning">
+                       <if condition="$row['status'] == 0">下线</if>
+                       <if condition="$row['status'] == 1">上线</if>
+                     </a>
+
+
+                 </td>
+                 </tr>
+                   </foreach>
+                </tbody>
+
+                <tr>
+                    <td colspan="16" align="center">{$fen}</td>
+               </tr>
+            </table>
+        </div>
+    </div>
+</block>
